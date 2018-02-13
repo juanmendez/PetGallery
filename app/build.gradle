@@ -1,8 +1,8 @@
-apply plugin: 'com.android.application'
-
-apply plugin: 'kotlin-android'
-
-apply plugin: 'kotlin-android-extensions'
+apply plugin: "com.android.application"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "kotlin-kapt"
+apply plugin: "kotlin-allopen"
 
 android {
     compileSdkVersion 26
@@ -17,17 +17,59 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+allOpen {
+    annotation("org.androidannotations.api.KotlinOpen")
+}
+
+kapt {
+    correctErrorTypes = true
+    arguments {
+        arg("resourcePackageName", "org.androidannotations.gradle")  //AndroidAnnotations fix
+        arg("resourcePackageName", android.defaultConfig.applicationId) //ApplicationId fix
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
+    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
+    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+
+
+    //<editor-fold desc="AndroidAnnotations">
+    implementation "org.androidannotations:androidannotations-api:${androidAnnotations}"
+    kapt "org.androidannotations:androidannotations:${androidAnnotations}"
+    kapt "com.android.databinding:compiler:${gradleToolsVersion}"
+    //</editor-fold>
+
+    implementation "com.squareup.picasso:picasso:2.5.2"
+    implementation "com.jakewharton.timber:timber:4.5.1"
+
+    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+
+    implementation "io.reactivex.rxjava2:rxjava:2.1.9"
+    implementation "io.reactivex.rxjava2:rxkotlin:2.2.0"
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.1"
+    implementation "com.github.pwittchen:reactivenetwork-rx2:0.12.2"
+
+
+    testImplementation "junit:junit:4.12"
+    androidTestImplementation "com.android.support.test:runner:1.0.1"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:${gradleToolsVersion}"
 }

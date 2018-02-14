@@ -32,12 +32,12 @@ class PetListPresenter: LifecycleObserver {
             Timber.i( "on data change " + Thread.currentThread().name )
         }
 
-        viewModel.mutableBreedList.observe(mView, observer)
+        viewModel.liveBreedList.observe(mView, observer)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onPause(){
 
-        viewModel.mutableBreedList.removeObserver( observer )
+        viewModel.liveBreedList.removeObserver( observer )
     }
 }

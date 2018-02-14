@@ -39,7 +39,7 @@ class PetClientHttp {
 
             override fun onResponse(call: Call<BreedListResponse>?, response: Response<BreedListResponse>?) {
                 val breedList = response!!.body().message
-                petCall.onResponse( breedList.map { Breed(it) } )
+                petCall.onResponse(breedList.map { Breed(it) })
             }
         })
     }

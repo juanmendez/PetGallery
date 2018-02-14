@@ -1,8 +1,8 @@
 package info.juanmendez.petgallery.ui
 
+import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import info.juanmendez.petgallery.R
-import org.androidannotations.annotations.AfterInject
 import org.androidannotations.annotations.Bean
 import org.androidannotations.annotations.EActivity
 
@@ -12,8 +12,8 @@ class PetListActivity : AppCompatActivity() {
     @Bean
     lateinit var presenter: PetListPresenter
 
-    @AfterInject
-    fun whenOnCreate() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         presenter.register(this)
     }
 }

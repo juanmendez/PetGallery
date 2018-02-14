@@ -14,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * Created by juan on 2/13/18.
  */
 @EBean
-class PetHTTPClient {
+class PetClientHttp {
     private lateinit var retrofit: Retrofit
     private lateinit var petApi: PetApi
 

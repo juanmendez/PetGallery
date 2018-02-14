@@ -1,14 +1,8 @@
 package info.juanmendez.petgallery.ui
 
-import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
-import android.arch.lifecycle.OnLifecycleEvent
-import android.arch.lifecycle.ViewModelProviders
+import android.arch.lifecycle.*
 import android.support.v4.app.FragmentActivity
-import info.juanmendez.petgallery.api.PetCall
-import info.juanmendez.petgallery.api.PetHTTPClient
 import info.juanmendez.petgallery.api.models.Breed
-import org.androidannotations.annotations.Bean
 import org.androidannotations.annotations.EBean
 import timber.log.Timber
 
@@ -18,14 +12,14 @@ import timber.log.Timber
 @EBean
 class PetListPresenter: LifecycleObserver {
 
-    @Bean
-    lateinit var petHttpClient: PetHTTPClient
-
+    private lateinit var mView:FragmentActivity
     private lateinit var viewModel:PetListViewModel
+    private lateinit var observer:Observer<List<Breed>>
 
     fun register( view:FragmentActivity ):PetListPresenter{
-        view.lifecycle.addObserver(this)
-        viewModel = ViewModelProviders.of( view ).get( PetListViewModel::class.java)
+        mView = view
+        mView.lifecycle.addObserver(this)
+        viewModel = ViewModelProviders.of( mView ).get( PetListViewModel::class.java)
 
         return this
     }
@@ -34,21 +28,16 @@ class PetListPresenter: LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume(){
 
-        petHttpClient.getBreeds( object:PetCall<List<Breed>>{
-            override fun onError(exception: Exception) {
-                Timber.i( exception.message )
-            }
+        observer = Observer<List<Breed>> {
+            Timber.i( "on data change " + Thread.currentThread().name )
+        }
 
-            override fun onResponse(response: List<Breed>) {
-                Timber.i( response.toString() )
-
-                viewModel.mutableBreedList
-            }
-
-        })
+        viewModel.mutableBreedList.observe(mView, observer)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onPause(){
+
+        viewModel.mutableBreedList.removeObserver( observer )
     }
 }

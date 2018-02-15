@@ -27,7 +27,7 @@ class PetListAdapter(private val inflater:LayoutInflater, view: PetListView): Re
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PetListHolder {
         var binding = ViewPetItemBinding.inflate(inflater, parent, false )
         binding.petsObservable = petsObservable
-        return PetListHolder(binding)
+        return PetListHolder(binding, inflater)
     }
 
     override fun getItemCount(): Int = petsObservable.petList.size

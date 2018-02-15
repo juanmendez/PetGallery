@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import info.juanmendez.petgallery.R
 import info.juanmendez.petgallery.databinding.ActivityPetlistBinding
-import info.juanmendez.petgallery.ui.petlist.adapter.PetListAdapter
+import info.juanmendez.petgallery.ui.petlist.petlist_adapter.PetListAdapter
 import info.juanmendez.petgallery.ui.services.PetListViewModel
 import info.juanmendez.petgallery.ui.services.PetsObservable
 import org.androidannotations.annotations.*

@@ -7,5 +7,6 @@ class PetRoutes {
     companion object {
         const val PET_URL = "https://dog.ceo"
         const val ALL_BREEDS = "/api/breeds/list"
+        const val PICS_BY_BREED = "/api/breed/{breed}/images"
     }
 }

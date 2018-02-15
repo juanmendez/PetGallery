@@ -6,6 +6,7 @@
         <variable
             name="breed"
             type="info.juanmendez.petgallery.api.models.Breed"/>
+
         <variable
             name="petsObservable"
             type="info.juanmendez.petgallery.ui.services.PetsObservable"/>
@@ -14,7 +15,14 @@
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="150dp">
+
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/petlist_rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <TextView
             android:text="@{breed.name}"
             android:layout_width="match_parent"

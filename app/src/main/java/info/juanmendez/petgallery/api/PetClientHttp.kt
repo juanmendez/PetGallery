@@ -34,12 +34,27 @@ class PetClientHttp {
 
         call.enqueue( object:Callback<BreedListResponse>{
             override fun onFailure(call: Call<BreedListResponse>?, t: Throwable?) {
-                petCall.onError( Exception( t?.message ?: "getBreeds.Error") )
+                petCall.onError( Exception( t?.message ?: "${PetRoutes.ALL_BREEDS}Error") )
             }
 
             override fun onResponse(call: Call<BreedListResponse>?, response: Response<BreedListResponse>?) {
                 val breedList = response!!.body().message
                 petCall.onResponse(breedList.map { Breed(it) })
+            }
+        })
+    }
+
+    fun getPicsByBreed( breedName:String, petCall:PetCall<List<String>>){
+        var call:Call<BreedListResponse> = petApi.getPicsByBreed( breedName )
+
+        call.enqueue( object:Callback<BreedListResponse>{
+            override fun onFailure(call: Call<BreedListResponse>?, t: Throwable?) {
+                petCall.onError( Exception( t?.message ?: "${PetRoutes.PICS_BY_BREED}.Error") )
+            }
+
+            override fun onResponse(call: Call<BreedListResponse>?, response: Response<BreedListResponse>?) {
+                val breedList = response!!.body().message
+                petCall.onResponse( breedList )
             }
         })
     }

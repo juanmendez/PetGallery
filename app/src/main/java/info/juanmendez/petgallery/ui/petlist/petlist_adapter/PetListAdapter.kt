@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery.ui.petlist.adapter
+package info.juanmendez.petgallery.ui.petlist.petlist_adapter
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
@@ -15,7 +15,7 @@ import info.juanmendez.petgallery.ui.petlist.PetListView
 /**
  * Created by juan on 2/14/18.
  */
-class PetListAdapter(private val inflater:LayoutInflater, view: PetListView): RecyclerView.Adapter<PetAdapterHolder>(),
+class PetListAdapter(private val inflater:LayoutInflater, view: PetListView): RecyclerView.Adapter<PetListHolder>(),
                                                                                 LifecycleObserver {
     private val petsObservable = view.getPetsObservable()
     private lateinit var callBack:OnPropertyChangedCallback
@@ -24,15 +24,15 @@ class PetListAdapter(private val inflater:LayoutInflater, view: PetListView): Re
         view.getLifeCycle().addObserver( this )
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PetAdapterHolder {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PetListHolder {
         var binding = ViewPetItemBinding.inflate(inflater, parent, false )
         binding.petsObservable = petsObservable
-        return PetAdapterHolder(binding)
+        return PetListHolder(binding)
     }
 
     override fun getItemCount(): Int = petsObservable.petList.size
 
-    override fun onBindViewHolder(holder: PetAdapterHolder?, position: Int) {
+    override fun onBindViewHolder(holder: PetListHolder?, position: Int) {
         holder?.setBreed( petsObservable.petList[position] )
     }
 

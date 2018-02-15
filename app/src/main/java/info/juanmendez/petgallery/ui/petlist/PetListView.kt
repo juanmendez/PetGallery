@@ -1,6 +1,7 @@
 package info.juanmendez.petgallery.ui.petlist
 
 import android.arch.lifecycle.Lifecycle
+import android.content.Intent
 import info.juanmendez.petgallery.ui.services.PetsObservable
 
 /**
@@ -9,4 +10,5 @@ import info.juanmendez.petgallery.ui.services.PetsObservable
 interface PetListView {
     fun getLifeCycle():Lifecycle
     fun getPetsObservable(): PetsObservable
+    fun startActivity( intent:Intent )
 }

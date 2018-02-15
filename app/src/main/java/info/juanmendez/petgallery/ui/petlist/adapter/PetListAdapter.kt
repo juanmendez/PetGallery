@@ -9,7 +9,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.databinding.library.baseAdapters.BR
-import info.juanmendez.petgallery.databinding.ViewPetitemBinding
+import info.juanmendez.petgallery.databinding.ViewPetItemBinding
 import info.juanmendez.petgallery.ui.petlist.PetListView
 
 /**
@@ -25,7 +25,7 @@ class PetListAdapter(private val inflater:LayoutInflater, view: PetListView): Re
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PetAdapterHolder {
-        var binding = ViewPetitemBinding.inflate(inflater, parent, false )
+        var binding = ViewPetItemBinding.inflate(inflater, parent, false )
         binding.petsObservable = petsObservable
         return PetAdapterHolder(binding)
     }

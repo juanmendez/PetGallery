@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery.ui
+package info.juanmendez.petgallery.ui.petlist
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.ViewModelProviders
@@ -9,6 +9,9 @@ import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import info.juanmendez.petgallery.R
 import info.juanmendez.petgallery.databinding.ActivityPetlistBinding
+import info.juanmendez.petgallery.ui.petlist.adapter.PetListAdapter
+import info.juanmendez.petgallery.ui.services.PetListViewModel
+import info.juanmendez.petgallery.ui.services.PetsObservable
 import org.androidannotations.annotations.*
 
 @DataBound
@@ -35,12 +38,10 @@ class PetListActivity : AppCompatActivity(), PetListView {
         var linearLayoutManager = LinearLayoutManager( this )
         linearLayoutManager.orientation = LinearLayout.VERTICAL
         recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = PetListAdapter(layoutInflater, this )
+        recyclerView.adapter = PetListAdapter(layoutInflater, this)
     }
 
-    override fun getLifeCycle(): Lifecycle {
-        return this.lifecycle
-    }
+    override fun getLifeCycle():Lifecycle=lifecycle
 
     override fun getPetsObservable(): PetsObservable {
         return ViewModelProviders.of( this ).get( PetListViewModel::class.java).petListObservable

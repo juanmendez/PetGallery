@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery.ui
+package info.juanmendez.petgallery.ui.petlist.adapter
 
 import android.support.v7.widget.RecyclerView
 import info.juanmendez.petgallery.api.models.Breed

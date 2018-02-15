@@ -3,14 +3,14 @@
     <data>
         <variable
             name="petsObservable"
-            type="info.juanmendez.petgallery.ui.PetsObservable"/>
+            type="info.juanmendez.petgallery.ui.services.PetsObservable"/>
     </data>
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="info.juanmendez.petgallery.ui.PetListActivity">
+        tools:context="info.juanmendez.petgallery.ui.petlist.PetListActivity">
 
 
         <android.support.v7.widget.RecyclerView

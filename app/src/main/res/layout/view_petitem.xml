@@ -8,7 +8,7 @@
             type="info.juanmendez.petgallery.api.models.Breed"/>
         <variable
             name="petsObservable"
-            type="info.juanmendez.petgallery.ui.PetsObservable"/>
+            type="info.juanmendez.petgallery.ui.services.PetsObservable"/>
     </data>
 
     <LinearLayout

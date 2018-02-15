@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery.ui
+package info.juanmendez.petgallery.ui.petlist.adapter
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
@@ -10,11 +10,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.databinding.library.baseAdapters.BR
 import info.juanmendez.petgallery.databinding.ViewPetitemBinding
+import info.juanmendez.petgallery.ui.petlist.PetListView
 
 /**
  * Created by juan on 2/14/18.
  */
-class PetListAdapter(private val inflater:LayoutInflater, view:PetListView): RecyclerView.Adapter<PetAdapterHolder>(),
+class PetListAdapter(private val inflater:LayoutInflater, view: PetListView): RecyclerView.Adapter<PetAdapterHolder>(),
                                                                                 LifecycleObserver {
     private val petsObservable = view.getPetsObservable()
     private lateinit var callBack:OnPropertyChangedCallback
@@ -26,7 +27,7 @@ class PetListAdapter(private val inflater:LayoutInflater, view:PetListView): Rec
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PetAdapterHolder {
         var binding = ViewPetitemBinding.inflate(inflater, parent, false )
         binding.petsObservable = petsObservable
-        return PetAdapterHolder(binding )
+        return PetAdapterHolder(binding)
     }
 
     override fun getItemCount(): Int = petsObservable.petList.size

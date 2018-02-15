@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery.ui
+package info.juanmendez.petgallery.ui.petlist
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
@@ -16,12 +16,12 @@ import timber.log.Timber
 @EBean
 class PetListPresenter: LifecycleObserver {
 
-    private lateinit var mView:PetListView
+    private lateinit var mView: PetListView
 
     @Bean
     lateinit var mPetClientHttp: PetClientHttp
 
-    fun register( view:PetListView ):PetListPresenter{
+    fun register( view: PetListView): PetListPresenter {
         mView = view
         mView.getLifeCycle().addObserver(this)
 

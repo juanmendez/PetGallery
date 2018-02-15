@@ -1,8 +1,12 @@
 package info.juanmendez.petgallery.ui
 
-import android.arch.lifecycle.*
-import android.support.v4.app.FragmentActivity
+import android.arch.lifecycle.Lifecycle
+import android.arch.lifecycle.LifecycleObserver
+import android.arch.lifecycle.OnLifecycleEvent
+import info.juanmendez.petgallery.api.PetCall
+import info.juanmendez.petgallery.api.PetClientHttp
 import info.juanmendez.petgallery.api.models.Breed
+import org.androidannotations.annotations.Bean
 import org.androidannotations.annotations.EBean
 import timber.log.Timber
 
@@ -12,32 +16,41 @@ import timber.log.Timber
 @EBean
 class PetListPresenter: LifecycleObserver {
 
-    private lateinit var mView:FragmentActivity
-    private lateinit var viewModel:PetListViewModel
-    private lateinit var observer:Observer<List<Breed>>
+    private lateinit var mView:PetListView
 
-    fun register( view:FragmentActivity ):PetListPresenter{
+    @Bean
+    lateinit var mPetClientHttp: PetClientHttp
+
+    fun register( view:PetListView ):PetListPresenter{
         mView = view
-        mView.lifecycle.addObserver(this)
-        viewModel = ViewModelProviders.of( mView ).get( PetListViewModel::class.java)
+        mView.getLifeCycle().addObserver(this)
 
         return this
     }
 
-
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume(){
 
-        observer = Observer<List<Breed>> {
-            Timber.i( "on data change " + Thread.currentThread().name )
+        if( mView.getPetsObservable().petList.isEmpty() ){
+            refreshPetList()
         }
-
-        viewModel.liveBreedList.observe(mView, observer)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onPause(){
 
-        viewModel.liveBreedList.removeObserver( observer )
+    }
+
+    fun refreshPetList(){
+
+        mPetClientHttp.getBreeds( object: PetCall<List<Breed>> {
+            override fun onError(exception: Exception) {
+                Timber.e( exception.message )
+            }
+
+            override fun onResponse(response: List<Breed>) {
+                mView.getPetsObservable().petList = response
+            }
+        })
     }
 }

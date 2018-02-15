@@ -5,7 +5,7 @@ package info.juanmendez.petgallery.api
  */
 class PetRoutes {
     companion object {
-        val PET_URL = "https://dog.ceo"
+        const val PET_URL = "https://dog.ceo"
         const val ALL_BREEDS = "/api/breeds/list"
     }
 }

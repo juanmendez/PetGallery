@@ -2,8 +2,8 @@
 <layout>
     <data>
         <variable
-            name="petsObservable"
-            type="info.juanmendez.petgallery.ui.services.PetsObservable"/>
+            name="petListObservable"
+            type="info.juanmendez.petgallery.ui.services.PetListObservable"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

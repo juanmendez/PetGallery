@@ -11,7 +11,7 @@ import info.juanmendez.petgallery.R
 import info.juanmendez.petgallery.databinding.ActivityPetlistBinding
 import info.juanmendez.petgallery.ui.petlist.petlist_adapter.PetListAdapter
 import info.juanmendez.petgallery.ui.services.PetListViewModel
-import info.juanmendez.petgallery.ui.services.PetsObservable
+import info.juanmendez.petgallery.ui.services.PetListObservable
 import org.androidannotations.annotations.*
 
 @DataBound
@@ -34,7 +34,7 @@ class PetListActivity : AppCompatActivity(), PetListView {
 
     @AfterViews
     fun afterViews() {
-        mBinding.petsObservable = getPetsObservable()
+        mBinding.petListObservable = getPetsObservable()
         var linearLayoutManager = LinearLayoutManager( this )
         linearLayoutManager.orientation = LinearLayout.VERTICAL
         recyclerView.layoutManager = linearLayoutManager
@@ -43,7 +43,7 @@ class PetListActivity : AppCompatActivity(), PetListView {
 
     override fun getLifeCycle():Lifecycle=lifecycle
 
-    override fun getPetsObservable(): PetsObservable {
+    override fun getPetsObservable(): PetListObservable {
         return ViewModelProviders.of( this ).get( PetListViewModel::class.java).petListObservable
     }
 }

@@ -8,7 +8,7 @@ import info.juanmendez.petgallery.api.models.Breed
 /**
  * Created by juan on 2/14/18.
  */
-class PetsObservable : BaseObservable() {
+class PetListObservable : BaseObservable() {
     private var _petList = listOf<Breed>()
 
     var petList:List<Breed>

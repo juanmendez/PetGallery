@@ -8,8 +8,8 @@
             type="info.juanmendez.petgallery.ui.petlist.viewmodel.PetObservable"/>
 
         <variable
-            name="petsObservable"
-            type="info.juanmendez.petgallery.ui.services.PetsObservable"/>
+            name="petListObservable"
+            type="info.juanmendez.petgallery.ui.services.PetListObservable"/>
     </data>
 
     <LinearLayout
@@ -21,6 +21,7 @@
             app:picassoSrc="@{petObservable.breed.pictureList}"
             android:layout_width="match_parent"
             android:layout_height="1dp" android:layout_weight="1">
+
             <ImageView
                 android:layout_weight="1"
                 android:layout_width="1dp"

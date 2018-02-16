@@ -5,6 +5,11 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import com.squareup.picasso.Picasso
 
+/**
+ * This binding adapter is attached to a viewGroup
+ * and it searches for those child views which are ImageViews,
+ * in that way it is able to load those images based on given url list
+ */
 @BindingAdapter("picassoImageGroup")
 fun picassoImageGroup(viewGroup: ViewGroup, images:List<String> ){
 

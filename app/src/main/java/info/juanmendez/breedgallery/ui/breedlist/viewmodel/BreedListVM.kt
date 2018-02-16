@@ -4,7 +4,8 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 
 /**
- * Created by juan on 2/13/18.
+ * Created by Juan Mendez on 2/13/18.
+ * viewModel helps the breedListView to retain its data instead of having to pull it on each rotation
  */
 class BreedListVM(application:Application): AndroidViewModel(application) {
 

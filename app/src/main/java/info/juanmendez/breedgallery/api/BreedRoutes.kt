@@ -1,7 +1,7 @@
 package info.juanmendez.breedgallery.api
 
 /**
- * Created by juan on 2/13/18.
+ * Created by Juan Mendez on 2/13/18.
  */
 class BreedRoutes {
     companion object {

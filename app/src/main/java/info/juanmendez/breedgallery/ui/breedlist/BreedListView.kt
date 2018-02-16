@@ -5,7 +5,8 @@ import android.content.Intent
 import info.juanmendez.breedgallery.ui.services.BreedListObservable
 
 /**
- * Created by juan on 2/14/18.
+ * Created by Juan Mendez on 2/14/18.
+ * This interface is intended for a presenter to decouple association with an Activity or a Fragment
  */
 interface BreedListView {
     fun getLifeCycle():Lifecycle

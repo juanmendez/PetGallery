@@ -11,8 +11,8 @@ import android.widget.LinearLayout
 import info.juanmendez.breedgallery.R
 import info.juanmendez.breedgallery.databinding.ActivityPetlistBinding
 import info.juanmendez.breedgallery.ui.breedlist.adapter.BreedListAdapter
-import info.juanmendez.breedgallery.ui.services.BreedListVM
 import info.juanmendez.breedgallery.ui.services.BreedListObservable
+import info.juanmendez.breedgallery.ui.services.BreedListVM
 import org.androidannotations.annotations.*
 
 @DataBound
@@ -38,22 +38,30 @@ class BreedListActivity : AppCompatActivity(), BreedListView {
 
     @AfterViews
     fun afterViews() {
+
+        //The view doesn't use mBinding but it's beneficial for our recyclerView
         mBinding.breedListObservable = getBreadListObservable()
+        drawRecyclerView()
 
-        var linearLayoutManager = LinearLayoutManager( this )
-        linearLayoutManager.orientation = LinearLayout.VERTICAL
-        recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = BreedListAdapter(layoutInflater, this)
-
+        //user can refresh through the screen as well as through menu item
         swipeRefreshLayout.setOnRefreshListener {
             mPresenter.refreshPetList()
             swipeRefreshLayout.isRefreshing = false
         }
     }
 
+    private fun drawRecyclerView() {
+        var layoutManager = LinearLayoutManager(this)
+        layoutManager.orientation = LinearLayout.VERTICAL
+        recyclerView.layoutManager = layoutManager
+        recyclerView.adapter = BreedListAdapter(layoutInflater, this)
+    }
+
     override fun getLifeCycle():Lifecycle=lifecycle
 
+
     override fun getBreadListObservable(): BreedListObservable {
+        //this is useful as binding between presenter and view
         return ViewModelProviders.of( this ).get( BreedListVM::class.java).breedListObservable
     }
 }

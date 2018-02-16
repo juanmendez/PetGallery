@@ -11,7 +11,7 @@ import org.androidannotations.annotations.EBean
 import timber.log.Timber
 
 /**
- * Created by juan on 2/13/18.
+ * Created by Juan Mendez on 2/13/18.
  */
 @EBean
 class BreedListPresenter : LifecycleObserver {
@@ -31,18 +31,21 @@ class BreedListPresenter : LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume(){
 
+        /**
+         * ViewModel has a list of breeds, so initially we detect
+         * if we need to go and fetch the content
+         */
         if( mView.getBreadListObservable().breedList.isEmpty() ){
             refreshPetList()
         }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun onPause(){
-
-    }
+    fun onPause(){}
 
     fun refreshPetList(){
 
+        //gotcha, app broke due to a late call from its view while being destroyed
         if( !mView.getLifeCycle().currentState.equals(Lifecycle.State.RESUMED))
             return
 

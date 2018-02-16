@@ -13,7 +13,9 @@ import info.juanmendez.breedgallery.databinding.ViewPetItemBinding
 import info.juanmendez.breedgallery.ui.breedlist.BreedListView
 
 /**
- * Created by juan on 2/14/18.
+ * Created by Juan Mendez on 2/14/18.
+ * Through dataBinding the recyclerView can have a binding reference and refresh its content
+ * upon changes triggered at breadListObservable.breedList
  */
 class BreedListAdapter(private val inflater:LayoutInflater, view: BreedListView): RecyclerView.Adapter<BreedListHolder>(),
                                                                                 LifecycleObserver {

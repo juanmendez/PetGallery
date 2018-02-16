@@ -6,7 +6,9 @@ import info.juanmendez.breedgallery.BR
 import info.juanmendez.breedgallery.api.models.Breed
 
 /**
- * Created by juan on 2/15/18.
+ * Created by Juan Mendez on 2/15/18.
+ *
+ * This is an observable used for recyclerView holder and its view
  */
 class BreedObservable : BaseObservable() {
     private var _breed = Breed("")

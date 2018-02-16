@@ -15,7 +15,12 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="150dp">
+        android:layout_height="150dp" android:padding="10dp">
+
+        <TextView
+            android:text="@{breedObservable.breed.name}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
 
         <LinearLayout
             app:picassoImageGroup="@{breedObservable.breed.pictureList}"
@@ -27,9 +32,17 @@
                 android:layout_width="1dp"
                 android:layout_height="match_parent" />
 
+            <android.support.v4.widget.Space
+                android:layout_width="16dp"
+                android:layout_height="match_parent" />
+
             <ImageView
                 android:layout_weight="1"
                 android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <android.support.v4.widget.Space
+                android:layout_width="16dp"
                 android:layout_height="match_parent" />
 
             <ImageView
@@ -38,9 +51,6 @@
                 android:layout_height="match_parent" />
         </LinearLayout>
 
-        <TextView
-            android:text="@{breedObservable.breed.name}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+
     </LinearLayout>
 </layout>

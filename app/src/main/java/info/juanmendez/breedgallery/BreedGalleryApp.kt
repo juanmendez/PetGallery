@@ -6,7 +6,7 @@ import timber.log.BuildConfig
 import timber.log.Timber
 
 /**
- * Created by juan on 2/13/18.
+ * Created by Juan Mendez on 2/13/18.
  */
 @EApplication
 class BreedGalleryApp : Application() {

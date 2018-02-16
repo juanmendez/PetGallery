@@ -11,7 +11,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
- * Created by juan on 2/13/18.
+ * Created by Juan Mendez on 2/13/18.
  */
 @EBean
 class BreedClientHttp {

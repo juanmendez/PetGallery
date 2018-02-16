@@ -6,7 +6,8 @@ import info.juanmendez.breedgallery.BR
 import info.juanmendez.breedgallery.api.models.Breed
 
 /**
- * Created by juan on 2/14/18.
+ * Created by Juan Mendez on 2/14/18.
+ * Observable used between breedListView and breedListPresenter
  */
 class BreedListObservable : BaseObservable() {
     private var _petList = listOf<Breed>()

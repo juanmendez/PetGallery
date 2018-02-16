@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
         <variable
-            name="breed"
-            type="info.juanmendez.petgallery.api.models.Breed"/>
+            name="petObservable"
+            type="info.juanmendez.petgallery.ui.petlist.viewmodel.PetObservable"/>
 
         <variable
             name="petsObservable"
@@ -13,19 +13,32 @@
     </data>
 
     <LinearLayout
-        android:orientation="horizontal"
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="150dp">
 
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/petlist_rv"
+        <LinearLayout
+            app:picassoSrc="@{petObservable.breed.pictureList}"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"/>
+            android:layout_height="1dp" android:layout_weight="1">
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+
+            <ImageView
+                android:layout_weight="1"
+                android:layout_width="1dp"
+                android:layout_height="match_parent" />
+        </LinearLayout>
 
         <TextView
-            android:text="@{breed.name}"
+            android:text="@{petObservable.breed.name}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>

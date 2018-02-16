@@ -19,7 +19,7 @@ class PetListPresenter: LifecycleObserver {
     private lateinit var mView: PetListView
 
     @Bean
-    lateinit var mPetClientHttp: PetClientHttp
+    lateinit var mHttp: PetClientHttp
 
     fun register( view: PetListView): PetListPresenter {
         mView = view
@@ -43,7 +43,7 @@ class PetListPresenter: LifecycleObserver {
 
     fun refreshPetList(){
 
-        mPetClientHttp.getBreeds( object: PetCall<List<Breed>> {
+        mHttp.getBreeds( object: PetCall<List<Breed>> {
             override fun onError(exception: Exception) {
                 Timber.e( exception.message )
             }

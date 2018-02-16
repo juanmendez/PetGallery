@@ -17,7 +17,7 @@ import info.juanmendez.petgallery.ui.petlist.PetListView
  */
 class PetListAdapter(private val inflater:LayoutInflater, view: PetListView): RecyclerView.Adapter<PetListHolder>(),
                                                                                 LifecycleObserver {
-    private val petsObservable = view.getPetsObservable()
+    private val mObservable = view.getPetsObservable()
     private lateinit var callBack:OnPropertyChangedCallback
 
     init {
@@ -26,14 +26,14 @@ class PetListAdapter(private val inflater:LayoutInflater, view: PetListView): Re
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PetListHolder {
         var binding = ViewPetItemBinding.inflate(inflater, parent, false )
-        binding.petsObservable = petsObservable
+        binding.petsObservable = mObservable
         return PetListHolder(binding, inflater)
     }
 
-    override fun getItemCount(): Int = petsObservable.petList.size
+    override fun getItemCount(): Int = mObservable.petList.size
 
     override fun onBindViewHolder(holder: PetListHolder?, position: Int) {
-        holder?.setBreed( petsObservable.petList[position] )
+        holder?.setBreed( mObservable.petList[position] )
     }
 
 
@@ -48,11 +48,11 @@ class PetListAdapter(private val inflater:LayoutInflater, view: PetListView): Re
             }
         }
 
-        petsObservable.addOnPropertyChangedCallback(callBack)
+        mObservable.addOnPropertyChangedCallback(callBack)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onPause(){
-        petsObservable.removeOnPropertyChangedCallback( callBack )
+        mObservable.removeOnPropertyChangedCallback( callBack )
     }
 }

@@ -1,7 +1,6 @@
 ## PetGallery
 
-This is a demo including a list of breeds. This app has been made using `Model-View-Presenter`
-and using `View-Model` to reduce contracts between the `Presenter` and its `View`
+This is a demo including a list of breeds. This app has been made using [`Model-View-Presenter`](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter) pattern as well as including [`View-Model`](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93viewmodel) to reduce contracts between the `Presenter` and its `View`
 
 ## Features
 * [Kotlin language](https://kotlinlang.org/)

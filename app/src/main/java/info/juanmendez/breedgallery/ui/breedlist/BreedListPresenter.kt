@@ -53,6 +53,7 @@ class BreedListPresenter : LifecycleObserver {
 
         mHttp.getBreeds( object: BreedCall<List<Breed>> {
             override fun onError(exception: Exception) {
+                //TODO: implement an error display in the View
                 Timber.e( exception.message )
             }
 

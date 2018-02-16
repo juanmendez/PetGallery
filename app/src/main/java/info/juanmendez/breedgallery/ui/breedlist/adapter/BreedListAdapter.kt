@@ -17,7 +17,7 @@ import info.juanmendez.breedgallery.ui.breedlist.BreedListView
  * Through dataBinding the recyclerView can have a binding reference and refresh its content
  * upon changes triggered at breadListObservable.breedList
  */
-class BreedListAdapter(private val inflater:LayoutInflater, view: BreedListView): RecyclerView.Adapter<BreedListHolder>(),
+class BreedListAdapter(private val inflater:LayoutInflater, view: BreedListView): RecyclerView.Adapter<BreedItemHolder>(),
                                                                                 LifecycleObserver {
     private val mObservable = view.getBreadListObservable()
     private lateinit var mCallBack:OnPropertyChangedCallback
@@ -26,15 +26,15 @@ class BreedListAdapter(private val inflater:LayoutInflater, view: BreedListView)
         view.getLifeCycle().addObserver( this )
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BreedListHolder {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BreedItemHolder {
         var binding = ViewPetItemBinding.inflate(inflater, parent, false )
         binding.breedListObservable = mObservable
-        return BreedListHolder(binding)
+        return BreedItemHolder(binding)
     }
 
     override fun getItemCount(): Int = mObservable.breedList.size
 
-    override fun onBindViewHolder(holder: BreedListHolder?, position: Int) {
+    override fun onBindViewHolder(holder: BreedItemHolder?, position: Int) {
         holder?.setBreed( mObservable.breedList[position] )
     }
 

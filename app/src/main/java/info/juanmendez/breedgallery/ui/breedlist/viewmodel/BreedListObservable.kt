@@ -10,6 +10,7 @@ import info.juanmendez.breedgallery.api.models.Breed
  * Observable used between breedListView and breedListPresenter
  */
 class BreedListObservable : BaseObservable() {
+
     private var _petList = listOf<Breed>()
 
     var breedList:List<Breed>

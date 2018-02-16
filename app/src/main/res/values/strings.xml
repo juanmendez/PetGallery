@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Pet Gallery</string>
+    <string name="app_name">Dog Breeds</string>
+    <string name="menu_refresh">refresh</string>
+    <string name="view_more_photos"><u>View More Photos</u></string>
 </resources>

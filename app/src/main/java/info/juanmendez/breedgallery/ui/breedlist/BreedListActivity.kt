@@ -16,6 +16,7 @@ import info.juanmendez.breedgallery.ui.services.BreedListVM
 import org.androidannotations.annotations.*
 
 @DataBound
+@OptionsMenu(R.menu.menu)
 @EActivity(R.layout.activity_petlist)
 class BreedListActivity : AppCompatActivity(), BreedListView {
 
@@ -43,11 +44,16 @@ class BreedListActivity : AppCompatActivity(), BreedListView {
         mBinding.breedListObservable = getBreadListObservable()
         drawRecyclerView()
 
-        //user can refresh through the screen as well as through menu item
+        //user can refresh through the screen as well as through menuRefresh()
         swipeRefreshLayout.setOnRefreshListener {
             mPresenter.refreshPetList()
             swipeRefreshLayout.isRefreshing = false
         }
+    }
+
+    @OptionsItem
+    fun menuRefresh(){
+        mPresenter.refreshPetList()
     }
 
     private fun drawRecyclerView() {

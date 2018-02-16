@@ -12,13 +12,20 @@
             type="info.juanmendez.breedgallery.ui.services.BreedListObservable"/>
     </data>
 
+    <!--TODO: make styles to clear code-->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="150dp" android:padding="10dp">
+        android:layout_height="200dp"
+        android:paddingRight="@dimen/breeding_item_padding"
+        android:paddingLeft="@dimen/breeding_item_padding"
+        android:paddingTop="@dimen/breeding_item_padding_half">
 
         <TextView
-            android:text="@{breedObservable.breed.name}"
+            app:textCapitalize="@{breedObservable.breed.name}"
+            android:textColor="@android:color/black"
+            style="@android:style/TextAppearance.DeviceDefault.Medium"
+            android:layout_marginBottom="@dimen/breed_pic_padding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
@@ -30,27 +37,28 @@
             <ImageView
                 android:layout_weight="1"
                 android:layout_width="1dp"
-                android:layout_height="match_parent" />
-
-            <android.support.v4.widget.Space
-                android:layout_width="16dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/breed_pic_padding"/>
 
             <ImageView
                 android:layout_weight="1"
                 android:layout_width="1dp"
                 android:layout_height="match_parent" />
 
-            <android.support.v4.widget.Space
-                android:layout_width="16dp"
-                android:layout_height="match_parent" />
-
             <ImageView
                 android:layout_weight="1"
                 android:layout_width="1dp"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                android:layout_marginLeft="@dimen/breed_pic_padding"/>
         </LinearLayout>
 
-
+        <TextView
+            style="@android:style/TextAppearance.DeviceDefault.Small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/breed_pic_padding"
+            android:text="@string/view_more_photos"
+            android:textAlignment="viewEnd"
+            android:textColor="@android:color/black" />
     </LinearLayout>
 </layout>

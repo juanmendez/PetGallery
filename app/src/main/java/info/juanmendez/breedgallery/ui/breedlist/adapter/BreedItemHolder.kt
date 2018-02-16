@@ -13,7 +13,7 @@ import info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable
 /**
  * Created by Juan Mendez on 2/14/18.
  */
-class BreedListHolder(var binding: ViewPetItemBinding): RecyclerView.ViewHolder(binding.root) {
+class BreedItemHolder(var binding: ViewPetItemBinding): RecyclerView.ViewHolder(binding.root) {
     private val mHttp = BreedClientHttp_.getInstance_( binding.root.context )
 
 

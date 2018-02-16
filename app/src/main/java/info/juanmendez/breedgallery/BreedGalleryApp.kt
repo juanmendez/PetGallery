@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery
+package info.juanmendez.breedgallery
 
 import android.app.Application
 import org.androidannotations.annotations.EApplication
@@ -9,7 +9,7 @@ import timber.log.Timber
  * Created by juan on 2/13/18.
  */
 @EApplication
-class PetApp: Application() {
+class BreedGalleryApp : Application() {
 
     override fun onCreate() {
         super.onCreate()

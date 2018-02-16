@@ -1,15 +1,15 @@
-package info.juanmendez.petgallery.ui.petlist.petlist_adapter
+package info.juanmendez.breedgallery.ui.breedlist.adapter
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.android.databinding.library.baseAdapters.BR
-import info.juanmendez.petgallery.api.BreedCall
-import info.juanmendez.petgallery.api.BreedClientHttp_
-import info.juanmendez.petgallery.api.models.Breed
-import info.juanmendez.petgallery.databinding.ViewPetItemBinding
-import info.juanmendez.petgallery.ui.petlist.viewmodel.BreedObservable
+import info.juanmendez.breedgallery.api.BreedCall
+import info.juanmendez.breedgallery.api.BreedClientHttp_
+import info.juanmendez.breedgallery.api.models.Breed
+import info.juanmendez.breedgallery.databinding.ViewPetItemBinding
+import info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable
 
 /**
  * Created by juan on 2/14/18.

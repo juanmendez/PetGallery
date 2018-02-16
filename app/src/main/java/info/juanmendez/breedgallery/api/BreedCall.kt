@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery.api
+package info.juanmendez.breedgallery.api
 
 /**
  * Created by juan on 2/13/18.

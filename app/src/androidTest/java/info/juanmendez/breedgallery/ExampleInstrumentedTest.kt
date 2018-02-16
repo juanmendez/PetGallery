@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery
+package info.juanmendez.breedgallery
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4

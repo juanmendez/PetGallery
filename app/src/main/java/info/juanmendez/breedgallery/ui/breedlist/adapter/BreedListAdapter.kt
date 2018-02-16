@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery.ui.petlist.petlist_adapter
+package info.juanmendez.breedgallery.ui.breedlist.adapter
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
@@ -9,8 +9,8 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.databinding.library.baseAdapters.BR
-import info.juanmendez.petgallery.databinding.ViewPetItemBinding
-import info.juanmendez.petgallery.ui.petlist.BreedListView
+import info.juanmendez.breedgallery.databinding.ViewPetItemBinding
+import info.juanmendez.breedgallery.ui.breedlist.BreedListView
 
 /**
  * Created by juan on 2/14/18.

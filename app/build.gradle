@@ -7,7 +7,7 @@ apply plugin: "kotlin-allopen"
 android {
     compileSdkVersion 26
     defaultConfig {
-        applicationId "info.juanmendez.petgallery"
+        applicationId "info.juanmendez.breedgallery"
         minSdkVersion 21
         targetSdkVersion 26
         versionCode 1

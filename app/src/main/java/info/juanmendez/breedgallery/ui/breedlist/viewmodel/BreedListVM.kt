@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery.ui.services
+package info.juanmendez.breedgallery.ui.services
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel

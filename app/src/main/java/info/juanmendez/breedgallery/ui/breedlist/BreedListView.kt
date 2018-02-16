@@ -1,8 +1,8 @@
-package info.juanmendez.petgallery.ui.petlist
+package info.juanmendez.breedgallery.ui.breedlist
 
 import android.arch.lifecycle.Lifecycle
 import android.content.Intent
-import info.juanmendez.petgallery.ui.services.BreedListObservable
+import info.juanmendez.breedgallery.ui.services.BreedListObservable
 
 /**
  * Created by juan on 2/14/18.

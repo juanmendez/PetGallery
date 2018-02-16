@@ -5,11 +5,11 @@
     <data>
         <variable
             name="breedObservable"
-            type="info.juanmendez.petgallery.ui.petlist.viewmodel.BreedObservable"/>
+            type="info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable"/>
 
         <variable
             name="breedListObservable"
-            type="info.juanmendez.petgallery.ui.services.BreedListObservable"/>
+            type="info.juanmendez.breedgallery.ui.services.BreedListObservable"/>
     </data>
 
     <LinearLayout

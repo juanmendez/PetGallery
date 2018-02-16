@@ -1,11 +1,11 @@
-package info.juanmendez.petgallery.ui.petlist
+package info.juanmendez.breedgallery.ui.breedlist
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.OnLifecycleEvent
-import info.juanmendez.petgallery.api.BreedCall
-import info.juanmendez.petgallery.api.BreedClientHttp
-import info.juanmendez.petgallery.api.models.Breed
+import info.juanmendez.breedgallery.api.BreedCall
+import info.juanmendez.breedgallery.api.BreedClientHttp
+import info.juanmendez.breedgallery.api.models.Breed
 import org.androidannotations.annotations.Bean
 import org.androidannotations.annotations.EBean
 import timber.log.Timber

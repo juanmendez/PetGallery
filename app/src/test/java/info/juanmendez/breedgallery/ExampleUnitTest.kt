@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery
+package info.juanmendez.breedgallery
 
 import org.junit.Test
 

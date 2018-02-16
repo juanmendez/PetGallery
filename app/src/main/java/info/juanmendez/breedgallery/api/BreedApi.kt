@@ -1,6 +1,6 @@
-package info.juanmendez.petgallery.api
+package info.juanmendez.breedgallery.api
 
-import info.juanmendez.petgallery.api.models.BreedListResponse
+import info.juanmendez.breedgallery.api.models.BreedListResponse
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path

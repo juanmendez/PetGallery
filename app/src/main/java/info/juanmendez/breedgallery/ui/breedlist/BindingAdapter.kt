@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery.ui.petlist
+package info.juanmendez.breedgallery.ui.breedlist
 
 import android.databinding.BindingAdapter
 import android.widget.ImageView

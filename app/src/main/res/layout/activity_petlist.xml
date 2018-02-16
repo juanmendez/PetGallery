@@ -3,14 +3,14 @@
     <data>
         <variable
             name="breedListObservable"
-            type="info.juanmendez.petgallery.ui.services.BreedListObservable"/>
+            type="info.juanmendez.breedgallery.ui.services.BreedListObservable"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="info.juanmendez.petgallery.ui.petlist.BreedListActivity">
+        tools:context=".ui.breedlist.BreedListActivity">
 
 
         <android.support.v7.widget.RecyclerView

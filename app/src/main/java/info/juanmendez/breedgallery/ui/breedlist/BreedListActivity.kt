@@ -1,4 +1,4 @@
-package info.juanmendez.petgallery.ui.petlist
+package info.juanmendez.breedgallery.ui.breedlist
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.ViewModelProviders
@@ -7,11 +7,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
-import info.juanmendez.petgallery.R
-import info.juanmendez.petgallery.databinding.ActivityPetlistBinding
-import info.juanmendez.petgallery.ui.petlist.petlist_adapter.BreedListAdapter
-import info.juanmendez.petgallery.ui.services.BreedListVM
-import info.juanmendez.petgallery.ui.services.BreedListObservable
+import info.juanmendez.breedgallery.R
+import info.juanmendez.breedgallery.databinding.ActivityPetlistBinding
+import info.juanmendez.breedgallery.ui.breedlist.adapter.BreedListAdapter
+import info.juanmendez.breedgallery.ui.services.BreedListVM
+import info.juanmendez.breedgallery.ui.services.BreedListObservable
 import org.androidannotations.annotations.*
 
 @DataBound

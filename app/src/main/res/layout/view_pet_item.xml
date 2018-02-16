@@ -4,12 +4,12 @@
 
     <data>
         <variable
-            name="petObservable"
-            type="info.juanmendez.petgallery.ui.petlist.viewmodel.PetObservable"/>
+            name="breedObservable"
+            type="info.juanmendez.petgallery.ui.petlist.viewmodel.BreedObservable"/>
 
         <variable
-            name="petListObservable"
-            type="info.juanmendez.petgallery.ui.services.PetListObservable"/>
+            name="breedListObservable"
+            type="info.juanmendez.petgallery.ui.services.BreedListObservable"/>
     </data>
 
     <LinearLayout
@@ -18,7 +18,7 @@
         android:layout_height="150dp">
 
         <LinearLayout
-            app:picassoSrc="@{petObservable.breed.pictureList}"
+            app:picassoSrc="@{breedObservable.breed.pictureList}"
             android:layout_width="match_parent"
             android:layout_height="1dp" android:layout_weight="1">
 
@@ -39,7 +39,7 @@
         </LinearLayout>
 
         <TextView
-            android:text="@{petObservable.breed.name}"
+            android:text="@{breedObservable.breed.name}"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>

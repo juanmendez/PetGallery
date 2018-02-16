@@ -9,22 +9,22 @@ import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
 import info.juanmendez.petgallery.R
 import info.juanmendez.petgallery.databinding.ActivityPetlistBinding
-import info.juanmendez.petgallery.ui.petlist.petlist_adapter.PetListAdapter
-import info.juanmendez.petgallery.ui.services.PetListViewModel
-import info.juanmendez.petgallery.ui.services.PetListObservable
+import info.juanmendez.petgallery.ui.petlist.petlist_adapter.BreedListAdapter
+import info.juanmendez.petgallery.ui.services.BreedListVM
+import info.juanmendez.petgallery.ui.services.BreedListObservable
 import org.androidannotations.annotations.*
 
 @DataBound
 @EActivity(R.layout.activity_petlist)
-class PetListActivity : AppCompatActivity(), PetListView {
+class BreedListActivity : AppCompatActivity(), BreedListView {
 
     @BindingObject
     lateinit var mBinding:ActivityPetlistBinding
 
     @Bean
-    lateinit var mPresenter: PetListPresenter
+    lateinit var mPresenter: BreedListPresenter
 
-    @ViewById(R.id.petlist_rv)
+    @ViewById(R.id.breedlist_rv)
     lateinit var recyclerView:RecyclerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,16 +34,16 @@ class PetListActivity : AppCompatActivity(), PetListView {
 
     @AfterViews
     fun afterViews() {
-        mBinding.petListObservable = getPetsObservable()
+        mBinding.breedListObservable = getPetsObservable()
         var linearLayoutManager = LinearLayoutManager( this )
         linearLayoutManager.orientation = LinearLayout.VERTICAL
         recyclerView.layoutManager = linearLayoutManager
-        recyclerView.adapter = PetListAdapter(layoutInflater, this)
+        recyclerView.adapter = BreedListAdapter(layoutInflater, this)
     }
 
     override fun getLifeCycle():Lifecycle=lifecycle
 
-    override fun getPetsObservable(): PetListObservable {
-        return ViewModelProviders.of( this ).get( PetListViewModel::class.java).petListObservable
+    override fun getPetsObservable(): BreedListObservable {
+        return ViewModelProviders.of( this ).get( BreedListVM::class.java).petListObservable
     }
 }

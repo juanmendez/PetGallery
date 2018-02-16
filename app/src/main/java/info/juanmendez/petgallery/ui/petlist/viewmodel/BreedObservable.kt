@@ -8,7 +8,7 @@ import info.juanmendez.petgallery.api.models.Breed
 /**
  * Created by juan on 2/15/18.
  */
-class PetObservable: BaseObservable() {
+class BreedObservable : BaseObservable() {
     private var _breed = Breed("")
 
     var breed:Breed

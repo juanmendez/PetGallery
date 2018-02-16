@@ -2,19 +2,19 @@
 <layout>
     <data>
         <variable
-            name="petListObservable"
-            type="info.juanmendez.petgallery.ui.services.PetListObservable"/>
+            name="breedListObservable"
+            type="info.juanmendez.petgallery.ui.services.BreedListObservable"/>
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="info.juanmendez.petgallery.ui.petlist.PetListActivity">
+        tools:context="info.juanmendez.petgallery.ui.petlist.BreedListActivity">
 
 
         <android.support.v7.widget.RecyclerView
-            android:id="@+id/petlist_rv"
+            android:id="@+id/breedlist_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 

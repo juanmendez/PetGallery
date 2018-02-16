@@ -2,6 +2,7 @@ package info.juanmendez.petgallery
 
 import android.app.Application
 import org.androidannotations.annotations.EApplication
+import timber.log.BuildConfig
 import timber.log.Timber
 
 /**

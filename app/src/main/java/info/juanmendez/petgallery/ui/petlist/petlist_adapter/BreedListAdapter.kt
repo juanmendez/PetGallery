@@ -10,49 +10,49 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.databinding.library.baseAdapters.BR
 import info.juanmendez.petgallery.databinding.ViewPetItemBinding
-import info.juanmendez.petgallery.ui.petlist.PetListView
+import info.juanmendez.petgallery.ui.petlist.BreedListView
 
 /**
  * Created by juan on 2/14/18.
  */
-class PetListAdapter(private val inflater:LayoutInflater, view: PetListView): RecyclerView.Adapter<PetListHolder>(),
+class BreedListAdapter(private val inflater:LayoutInflater, view: BreedListView): RecyclerView.Adapter<BreedListHolder>(),
                                                                                 LifecycleObserver {
     private val mObservable = view.getPetsObservable()
-    private lateinit var callBack:OnPropertyChangedCallback
+    private lateinit var mCallBack:OnPropertyChangedCallback
 
     init {
         view.getLifeCycle().addObserver( this )
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): PetListHolder {
+    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BreedListHolder {
         var binding = ViewPetItemBinding.inflate(inflater, parent, false )
-        binding.petListObservable = mObservable
-        return PetListHolder(binding, inflater)
+        binding.breedListObservable = mObservable
+        return BreedListHolder(binding, inflater)
     }
 
-    override fun getItemCount(): Int = mObservable.petList.size
+    override fun getItemCount(): Int = mObservable.breedList.size
 
-    override fun onBindViewHolder(holder: PetListHolder?, position: Int) {
-        holder?.setBreed( mObservable.petList[position] )
+    override fun onBindViewHolder(holder: BreedListHolder?, position: Int) {
+        holder?.setBreed( mObservable.breedList[position] )
     }
 
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume(){
 
-        callBack = object: OnPropertyChangedCallback() {
+        mCallBack = object: OnPropertyChangedCallback() {
             override fun onPropertyChanged(observable: Observable?, br: Int) {
-                if( br == BR.petList ){
+                if( br == BR.breedList ){
                     notifyDataSetChanged()
                 }
             }
         }
 
-        mObservable.addOnPropertyChangedCallback(callBack)
+        mObservable.addOnPropertyChangedCallback(mCallBack)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onPause(){
-        mObservable.removeOnPropertyChangedCallback( callBack )
+        mObservable.removeOnPropertyChangedCallback(mCallBack)
     }
 }

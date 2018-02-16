@@ -3,8 +3,8 @@ package info.juanmendez.petgallery.ui.petlist
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.OnLifecycleEvent
-import info.juanmendez.petgallery.api.PetCall
-import info.juanmendez.petgallery.api.PetClientHttp
+import info.juanmendez.petgallery.api.BreedCall
+import info.juanmendez.petgallery.api.BreedClientHttp
 import info.juanmendez.petgallery.api.models.Breed
 import org.androidannotations.annotations.Bean
 import org.androidannotations.annotations.EBean
@@ -14,14 +14,14 @@ import timber.log.Timber
  * Created by juan on 2/13/18.
  */
 @EBean
-class PetListPresenter: LifecycleObserver {
+class BreedListPresenter : LifecycleObserver {
 
-    private lateinit var mView: PetListView
+    private lateinit var mView: BreedListView
 
     @Bean
-    lateinit var mHttp: PetClientHttp
+    lateinit var mHttp: BreedClientHttp
 
-    fun register( view: PetListView): PetListPresenter {
+    fun register( view: BreedListView): BreedListPresenter {
         mView = view
         mView.getLifeCycle().addObserver(this)
 
@@ -31,7 +31,7 @@ class PetListPresenter: LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume(){
 
-        if( mView.getPetsObservable().petList.isEmpty() ){
+        if( mView.getPetsObservable().breedList.isEmpty() ){
             refreshPetList()
         }
     }
@@ -43,13 +43,13 @@ class PetListPresenter: LifecycleObserver {
 
     fun refreshPetList(){
 
-        mHttp.getBreeds( object: PetCall<List<Breed>> {
+        mHttp.getBreeds( object: BreedCall<List<Breed>> {
             override fun onError(exception: Exception) {
                 Timber.e( exception.message )
             }
 
             override fun onResponse(response: List<Breed>) {
-                mView.getPetsObservable().petList = response
+                mView.getPetsObservable().breedList = response
             }
         })
     }

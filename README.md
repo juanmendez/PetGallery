@@ -1,7 +1,7 @@
 ## PetGallery
 
-This is a demo including a list of breeds. This app has been made using `Model View Presenter`
-and using `DataBinding` to reduce contracts between the `Presenter` and its `View`
+This is a demo including a list of breeds. This app has been made using `Model-View-Presenter`
+and using `View-Model` to reduce contracts between the `Presenter` and its `View`
 
 ## Features
 * [Kotlin language](https://kotlinlang.org/)

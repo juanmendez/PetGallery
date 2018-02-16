@@ -43,6 +43,8 @@ class BreedListPresenter : LifecycleObserver {
 
     fun refreshPetList(){
 
+        mView.getPetsObservable().breedList = listOf()
+
         mHttp.getBreeds( object: BreedCall<List<Breed>> {
             override fun onError(exception: Exception) {
                 Timber.e( exception.message )

@@ -17,7 +17,7 @@ import info.juanmendez.breedgallery.ui.breedlist.BreedListView
  */
 class BreedListAdapter(private val inflater:LayoutInflater, view: BreedListView): RecyclerView.Adapter<BreedListHolder>(),
                                                                                 LifecycleObserver {
-    private val mObservable = view.getPetsObservable()
+    private val mObservable = view.getBreadListObservable()
     private lateinit var mCallBack:OnPropertyChangedCallback
 
     init {
@@ -27,7 +27,7 @@ class BreedListAdapter(private val inflater:LayoutInflater, view: BreedListView)
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BreedListHolder {
         var binding = ViewPetItemBinding.inflate(inflater, parent, false )
         binding.breedListObservable = mObservable
-        return BreedListHolder(binding, inflater)
+        return BreedListHolder(binding)
     }
 
     override fun getItemCount(): Int = mObservable.breedList.size

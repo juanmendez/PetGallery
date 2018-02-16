@@ -2,7 +2,6 @@ package info.juanmendez.breedgallery.ui.breedlist.adapter
 
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
-import android.view.LayoutInflater
 import android.widget.LinearLayout
 import com.android.databinding.library.baseAdapters.BR
 import info.juanmendez.breedgallery.api.BreedCall
@@ -14,7 +13,7 @@ import info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable
 /**
  * Created by juan on 2/14/18.
  */
-class BreedListHolder(var binding:ViewPetItemBinding, private val inflater: LayoutInflater): RecyclerView.ViewHolder(binding.root) {
+class BreedListHolder(var binding: ViewPetItemBinding): RecyclerView.ViewHolder(binding.root) {
     private val mHttp = BreedClientHttp_.getInstance_( binding.root.context )
 
 

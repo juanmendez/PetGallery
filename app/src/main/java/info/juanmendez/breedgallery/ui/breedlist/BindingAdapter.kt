@@ -1,22 +1,22 @@
 package info.juanmendez.breedgallery.ui.breedlist
 
 import android.databinding.BindingAdapter
+import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import com.squareup.picasso.Picasso
 
-@BindingAdapter("picassoSrc")
-fun picassoSrc(layout: LinearLayout, images:List<String> ){
+@BindingAdapter("picassoImageGroup")
+fun picassoImageGroup(viewGroup: ViewGroup, images:List<String> ){
 
     if( images.isNotEmpty() ){
 
         var imageList = mutableListOf<ImageView>()
-        var length = layout.childCount
-        val picasso = Picasso.with( layout.context )
+        var length = viewGroup.childCount
+        val picasso = Picasso.with( viewGroup.context )
 
         (0 until length)
-                .filter { layout.getChildAt(it) is ImageView }
-                .mapTo(imageList) { layout.getChildAt(it) as ImageView }
+                .filter { viewGroup.getChildAt(it) is ImageView }
+                .mapTo(imageList) { viewGroup.getChildAt(it) as ImageView }
 
         imageList.forEachIndexed( {index, image ->
             run {

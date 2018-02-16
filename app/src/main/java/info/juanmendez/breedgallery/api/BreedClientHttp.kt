@@ -15,18 +15,18 @@ import retrofit2.converter.gson.GsonConverterFactory
  */
 @EBean
 class BreedClientHttp {
-    private lateinit var retrofit: Retrofit
+    private lateinit var mRetrofit: Retrofit
     private lateinit var mBreedApi: BreedApi
 
     @AfterInject
     fun afterInject(){
-        retrofit = Retrofit
+        mRetrofit = Retrofit
                         .Builder()
                         .baseUrl(BreedRoutes.URL)
                         .addConverterFactory(GsonConverterFactory.create())
                     .build()
 
-        mBreedApi = retrofit.create( BreedApi::class.java)
+        mBreedApi = mRetrofit.create( BreedApi::class.java)
     }
 
     fun getBreeds(breedCall: BreedCall<List<Breed>>){

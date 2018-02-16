@@ -31,7 +31,7 @@ class BreedListPresenter : LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume(){
 
-        if( mView.getPetsObservable().breedList.isEmpty() ){
+        if( mView.getBreadListObservable().breedList.isEmpty() ){
             refreshPetList()
         }
     }
@@ -43,7 +43,10 @@ class BreedListPresenter : LifecycleObserver {
 
     fun refreshPetList(){
 
-        mView.getPetsObservable().breedList = listOf()
+        if( !mView.getLifeCycle().currentState.equals(Lifecycle.State.RESUMED))
+            return
+
+        mView.getBreadListObservable().breedList = listOf()
 
         mHttp.getBreeds( object: BreedCall<List<Breed>> {
             override fun onError(exception: Exception) {
@@ -51,7 +54,7 @@ class BreedListPresenter : LifecycleObserver {
             }
 
             override fun onResponse(response: List<Breed>) {
-                mView.getPetsObservable().breedList = response
+                mView.getBreadListObservable().breedList = response
             }
         })
     }

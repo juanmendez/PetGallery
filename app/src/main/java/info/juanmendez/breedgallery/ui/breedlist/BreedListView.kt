@@ -9,6 +9,6 @@ import info.juanmendez.breedgallery.ui.services.BreedListObservable
  */
 interface BreedListView {
     fun getLifeCycle():Lifecycle
-    fun getPetsObservable(): BreedListObservable
+    fun getBreadListObservable(): BreedListObservable
     fun startActivity( intent:Intent )
 }

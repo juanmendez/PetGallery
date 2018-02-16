@@ -18,7 +18,7 @@
         android:layout_height="150dp">
 
         <LinearLayout
-            app:picassoSrc="@{breedObservable.breed.pictureList}"
+            app:picassoImageGroup="@{breedObservable.breed.pictureList}"
             android:layout_width="match_parent"
             android:layout_height="1dp" android:layout_weight="1">
 

@@ -13,7 +13,6 @@ import info.juanmendez.breedgallery.databinding.ActivityPetlistBinding
 import info.juanmendez.breedgallery.ui.breedlist.adapter.BreedListAdapter
 import info.juanmendez.breedgallery.ui.services.BreedListVM
 import info.juanmendez.breedgallery.ui.services.BreedListObservable
-import kotlinx.android.synthetic.main.activity_petlist.view.*
 import org.androidannotations.annotations.*
 
 @DataBound
@@ -39,7 +38,8 @@ class BreedListActivity : AppCompatActivity(), BreedListView {
 
     @AfterViews
     fun afterViews() {
-        mBinding.breedListObservable = getPetsObservable()
+        mBinding.breedListObservable = getBreadListObservable()
+
         var linearLayoutManager = LinearLayoutManager( this )
         linearLayoutManager.orientation = LinearLayout.VERTICAL
         recyclerView.layoutManager = linearLayoutManager
@@ -53,7 +53,7 @@ class BreedListActivity : AppCompatActivity(), BreedListView {
 
     override fun getLifeCycle():Lifecycle=lifecycle
 
-    override fun getPetsObservable(): BreedListObservable {
-        return ViewModelProviders.of( this ).get( BreedListVM::class.java).petListObservable
+    override fun getBreadListObservable(): BreedListObservable {
+        return ViewModelProviders.of( this ).get( BreedListVM::class.java).breedListObservable
     }
 }

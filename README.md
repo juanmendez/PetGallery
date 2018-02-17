@@ -10,3 +10,5 @@ and using `DataBinding` to reduce contracts between the `Presenter` and its `Vie
 * [Android ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel.html), beneficial for preserving data upon device rotation
 * [Lifecycle-aware components](https://developer.android.com/topic/libraries/architecture/lifecycle.html), helps `Presenter` to be aware of `Views`'s lifecycle
 * [Retrofit](https://square.github.io/retrofit/)
+
+![alt text](/art/pet_gallery_screenshot.png)

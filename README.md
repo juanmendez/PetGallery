@@ -10,4 +10,5 @@ This is a demo including a list of breeds. This app has been made using [`Model-
 * [Lifecycle-aware components](https://developer.android.com/topic/libraries/architecture/lifecycle.html), helps `Presenter` to be aware of `Views`'s lifecycle
 * [Retrofit](https://square.github.io/retrofit/)
 
+
 ![alt text](/art/pet_gallery_screenshot.png)

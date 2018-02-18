@@ -49,7 +49,6 @@ class BreedListPresenter : LifecycleObserver {
         if( !mView.getLifeCycle().currentState.equals(Lifecycle.State.RESUMED))
             return
 
-        mView.getBreadListObservable().breedList = listOf()
 
         mHttp.getBreeds( object: BreedCall<List<Breed>> {
             override fun onError(exception: Exception) {

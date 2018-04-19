@@ -58,7 +58,6 @@ dependencies {
     //<editor-fold desc="AndroidAnnotations">
     implementation "org.androidannotations:androidannotations-api:${androidAnnotations}"
     kapt "org.androidannotations:androidannotations:${androidAnnotations}"
-    kapt "com.android.databinding:compiler:${gradleToolsVersion}"
     //</editor-fold>
 
     implementation "com.squareup.picasso:picasso:2.5.2"

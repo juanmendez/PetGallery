@@ -10,6 +10,7 @@ import info.juanmendez.breedgallery.api.models.Breed
  *
  * This is an observable used for recyclerView holder and its view
  */
+
 class BreedObservable : BaseObservable() {
     private var _breed = Breed("")
 

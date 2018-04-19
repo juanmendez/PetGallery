@@ -18,9 +18,6 @@ class BreedItemHolder(var binding: ViewPetItemBinding): RecyclerView.ViewHolder(
 
 
     init {
-        var linearLayoutManager = LinearLayoutManager( binding.root.context )
-        linearLayoutManager.orientation = LinearLayout.HORIZONTAL
-
         binding.breedObservable = BreedObservable()
     }
 

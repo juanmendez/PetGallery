@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
+import butterknife.ButterKnife
 import info.juanmendez.breedgallery.R
 import info.juanmendez.breedgallery.databinding.ActivityPetlistBinding
 import info.juanmendez.breedgallery.ui.breedlist.adapter.BreedListAdapter
@@ -18,22 +19,19 @@ import org.androidannotations.annotations.*
 @DataBound
 @OptionsMenu(R.menu.menu)
 @EActivity(R.layout.activity_petlist)
-class BreedListActivity : AppCompatActivity(), BreedListView {
+class BreedListActivity: AppCompatActivity(), BreedListView {
 
     @BindingObject
-    lateinit var binding:ActivityPetlistBinding
+    lateinit var binding: ActivityPetlistBinding
 
     @Bean
     lateinit var presenter: BreedListPresenter
 
-    @ViewById(R.id.petlist_recyclerview)
-    lateinit var recyclerView:RecyclerView
+    @ViewById(R.id.petlist_recyclerview) lateinit var recyclerView:   RecyclerView
+    @ViewById(R.id.petlist_refreshlayout) lateinit var refreshLayout: SwipeRefreshLayout
 
-    @ViewById(R.id.petlist_refreshlayout)
-    lateinit var refreshLayout: SwipeRefreshLayout
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
+    @AfterInject
+    fun afterInject() {
         presenter.register(this)
     }
 
@@ -53,7 +51,6 @@ class BreedListActivity : AppCompatActivity(), BreedListView {
 
     @OptionsItem
     fun menuRefresh(){
-        //TODO: hello world
         presenter.refreshPetList()
     }
 

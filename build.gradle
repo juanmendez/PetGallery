@@ -36,6 +36,7 @@ ext {
     butterKnifeVersion = "8.8.1"
     constraintLayoutVersion = "1.1.0"
     componentsLibVersion = "1.1.0"
+    daggerVersion = "2.15"
     gradleToolsVersion = "3.0.1"
     picassoVersion = "2.5.2"
     retrofitVersion = "2.2.0"

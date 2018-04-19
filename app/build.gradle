@@ -72,6 +72,10 @@ dependencies {
     implementation "org.androidannotations:androidannotations-api:$rootProject.androidAnnotations"
     kapt "org.androidannotations:androidannotations:$rootProject.androidAnnotations"
 
+    // Dagger
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
+
     // Picasso
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"

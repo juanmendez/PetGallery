@@ -5,11 +5,8 @@ import org.androidannotations.annotations.EApplication
 import timber.log.BuildConfig
 import timber.log.Timber
 
-/**
- * Created by Juan Mendez on 2/13/18.
- */
 @EApplication
-class BreedGalleryApp : Application() {
+class AndroidApp:Application() {
 
     override fun onCreate() {
         super.onCreate()

@@ -4,14 +4,20 @@ apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
 apply plugin: "kotlin-allopen"
 
+// version info
+def versionMajor = 1
+def versionMinor = 1
+def versionPatch = 1
+
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.targetSdkVersion
+
     defaultConfig {
         applicationId "info.juanmendez.breedgallery"
-        minSdkVersion 21
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode versionMajor * 1000000 + versionMinor * 1000 + versionPatch * 100
+        versionName "${versionMajor}.${versionMinor}.${versionPatch}"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -44,29 +50,40 @@ kapt {
 }
 
 dependencies {
+
+    // Kotlin
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:${supportLibVersion}"
-    implementation "com.android.support:recyclerview-v7:${supportLibVersion}"
-    implementation "com.android.support.constraint:constraint-layout:1.0.2"
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$rootProject.kotlin_version"
 
-    //<editor-fold desc="ComponentArchitecture">
-    implementation "android.arch.lifecycle:extensions:${componentsLibVersion}"
-    implementation "android.arch.lifecycle:viewmodel:${componentsLibVersion}"
-    //</editor-fold>
+    // Android Support
+    implementation "com.android.support:appcompat-v7:$rootProject.buildToolsVersion"
+    implementation "com.android.support:recyclerview-v7:$rootProject.buildToolsVersion"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.constraintLayoutVersion"
 
-    //<editor-fold desc="AndroidAnnotations">
-    implementation "org.androidannotations:androidannotations-api:${androidAnnotations}"
-    kapt "org.androidannotations:androidannotations:${androidAnnotations}"
-    //</editor-fold>
+    // ButterKnife
+    implementation "com.jakewharton:butterknife:$rootProject.butterKnifeVersion"
+    kapt "com.jakewharton:butterknife-compiler:$rootProject.butterKnifeVersion"
 
-    implementation "com.squareup.picasso:picasso:2.5.2"
-    implementation "com.jakewharton.timber:timber:4.5.1"
+    // Lifecycle architecture
+    implementation "android.arch.lifecycle:extensions:$rootProject.componentsLibVersion"
+    implementation "android.arch.lifecycle:viewmodel:$rootProject.componentsLibVersion"
 
-    implementation "com.squareup.retrofit2:retrofit:${retrofitVersion}"
-    implementation "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    // Android Annotations
+    implementation "org.androidannotations:androidannotations-api:$rootProject.androidAnnotations"
+    kapt "org.androidannotations:androidannotations:$rootProject.androidAnnotations"
 
+    // Picasso
+    implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
+    implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    // Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+
+    // Local Unit Test
     testImplementation "junit:junit:4.12"
+
+    // Espresso
     androidTestImplementation "com.android.support.test:runner:1.0.1"
-    androidTestImplementation "com.android.support.test.espresso:espresso-core:${gradleToolsVersion}"
+    androidTestImplementation "com.android.support.test.espresso:espresso-core:$rootProject.gradleToolsVersion"
 }

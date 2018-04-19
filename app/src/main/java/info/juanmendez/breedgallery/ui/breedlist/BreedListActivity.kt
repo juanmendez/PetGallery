@@ -21,39 +21,40 @@ import org.androidannotations.annotations.*
 class BreedListActivity : AppCompatActivity(), BreedListView {
 
     @BindingObject
-    lateinit var mBinding:ActivityPetlistBinding
+    lateinit var binding:ActivityPetlistBinding
 
     @Bean
-    lateinit var mPresenter: BreedListPresenter
+    lateinit var presenter: BreedListPresenter
 
-    @ViewById
+    @ViewById(R.id.petlist_recyclerview)
     lateinit var recyclerView:RecyclerView
 
-    @ViewById
-    lateinit var swipeRefreshLayout: SwipeRefreshLayout
+    @ViewById(R.id.petlist_refreshlayout)
+    lateinit var refreshLayout: SwipeRefreshLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mPresenter.register(this)
+        presenter.register(this)
     }
 
     @AfterViews
     fun afterViews() {
 
-        //The view doesn't use mBinding but it's beneficial for our recyclerView
-        mBinding.breedListObservable = getBreadListObservable()
+        //The view doesn't use binding but it's beneficial for our recyclerView
+        binding.breedListObservable = getBreadListObservable()
         drawRecyclerView()
 
         //user can refresh through the screen as well as through menuRefresh()
-        swipeRefreshLayout.setOnRefreshListener {
-            mPresenter.refreshPetList()
-            swipeRefreshLayout.isRefreshing = false
+        refreshLayout.setOnRefreshListener {
+            presenter.refreshPetList()
+            refreshLayout.isRefreshing = false
         }
     }
 
     @OptionsItem
     fun menuRefresh(){
-        mPresenter.refreshPetList()
+        //TODO: hello world
+        presenter.refreshPetList()
     }
 
     private fun drawRecyclerView() {

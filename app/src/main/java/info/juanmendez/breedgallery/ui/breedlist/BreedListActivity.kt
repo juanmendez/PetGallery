@@ -2,15 +2,13 @@ package info.juanmendez.breedgallery.ui.breedlist
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.ViewModelProviders
-import android.os.Bundle
 import android.support.v4.widget.SwipeRefreshLayout
-import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.widget.LinearLayout
-import butterknife.ButterKnife
 import info.juanmendez.breedgallery.R
 import info.juanmendez.breedgallery.databinding.ActivityPetlistBinding
+import info.juanmendez.breedgallery.ui.base.BaseActivity
 import info.juanmendez.breedgallery.ui.breedlist.adapter.BreedListAdapter
 import info.juanmendez.breedgallery.ui.services.BreedListObservable
 import info.juanmendez.breedgallery.ui.services.BreedListVM
@@ -19,7 +17,7 @@ import org.androidannotations.annotations.*
 @DataBound
 @OptionsMenu(R.menu.menu)
 @EActivity(R.layout.activity_petlist)
-class BreedListActivity: AppCompatActivity(), BreedListView {
+class BreedListActivity : BaseActivity(), BreedListView {
 
     @BindingObject
     lateinit var binding: ActivityPetlistBinding
@@ -27,8 +25,10 @@ class BreedListActivity: AppCompatActivity(), BreedListView {
     @Bean
     lateinit var presenter: BreedListPresenter
 
-    @ViewById(R.id.petlist_recyclerview) lateinit var recyclerView:   RecyclerView
-    @ViewById(R.id.petlist_refreshlayout) lateinit var refreshLayout: SwipeRefreshLayout
+    @ViewById(R.id.petlist_recyclerview)
+    lateinit var recyclerView: RecyclerView
+    @ViewById(R.id.petlist_refreshlayout)
+    lateinit var refreshLayout: SwipeRefreshLayout
 
     @AfterInject
     fun afterInject() {
@@ -50,7 +50,7 @@ class BreedListActivity: AppCompatActivity(), BreedListView {
     }
 
     @OptionsItem
-    fun menuRefresh(){
+    fun menuRefresh() {
         presenter.refreshPetList()
     }
 
@@ -61,11 +61,10 @@ class BreedListActivity: AppCompatActivity(), BreedListView {
         recyclerView.adapter = BreedListAdapter(layoutInflater, this)
     }
 
-    override fun getLifeCycle():Lifecycle=lifecycle
-
+    override fun getLifeCycle(): Lifecycle = lifecycle
 
     override fun getBreadListObservable(): BreedListObservable {
         //this is useful as binding between presenter and view
-        return ViewModelProviders.of( this ).get( BreedListVM::class.java).breedListObservable
+        return ViewModelProviders.of(this).get(BreedListVM::class.java).breedListObservable
     }
 }

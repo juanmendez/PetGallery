@@ -6,15 +6,15 @@ import timber.log.BuildConfig
 import timber.log.Timber
 
 @EApplication
-class AndroidApp:Application() {
+class AndroidApp : Application() {
 
     override fun onCreate() {
         super.onCreate()
         handleTimber()
     }
 
-    private fun handleTimber(){
-        if (BuildConfig.DEBUG) {
+    private fun handleTimber() {
+        if(BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         } else {
             Timber.plant(object : Timber.Tree() {

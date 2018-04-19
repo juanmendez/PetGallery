@@ -73,12 +73,21 @@ dependencies {
     kapt "org.androidannotations:androidannotations:$rootProject.androidAnnotations"
 
     // Dagger
+    implementation "com.google.dagger:dagger-android:$rootProject.daggerVersion"
     kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     kapt "com.google.dagger:dagger-android-processor:$daggerVersion"
 
     // Picasso
     implementation "com.squareup.picasso:picasso:$rootProject.picassoVersion"
     implementation "com.jakewharton.timber:timber:$rootProject.timberVersion"
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxAndroidVersion"
+    implementation "com.trello.rxlifecycle2:rxlifecycle:$rootProject.rxLifecycleVersion"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-components:$rootProject.rxLifecycleVersion"
+    implementation "com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:$rootProject.rxLifecycleVersion"
+    implementation 'com.jakewharton.rxbinding:rxbinding:1.0.1'
 
     // Retrofit
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"

@@ -14,10 +14,10 @@ import info.juanmendez.breedgallery.api.models.Breed
 class BreedObservable : BaseObservable() {
     private var _breed = Breed("")
 
-    var breed:Breed
+    var breed: Breed
         @Bindable get() = _breed
         set(value) {
             _breed = value
-            notifyPropertyChanged( BR.breed )
+            notifyPropertyChanged(BR.breed)
         }
 }

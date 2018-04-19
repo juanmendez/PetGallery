@@ -9,7 +9,7 @@ import info.juanmendez.breedgallery.ui.services.BreedListObservable
  * This interface is intended for a presenter to decouple association with an Activity or a Fragment
  */
 interface BreedListView {
-    fun getLifeCycle():Lifecycle
+    fun getLifeCycle(): Lifecycle
     fun getBreadListObservable(): BreedListObservable
-    fun startActivity( intent:Intent )
+    fun startActivity(intent: Intent)
 }

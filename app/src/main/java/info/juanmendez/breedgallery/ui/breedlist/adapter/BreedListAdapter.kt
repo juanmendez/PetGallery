@@ -17,17 +17,16 @@ import info.juanmendez.breedgallery.ui.breedlist.BreedListView
  * Through dataBinding the recyclerView can have a binding reference and refresh its content
  * upon changes triggered at breadListObservable.breedList
  */
-class BreedListAdapter(private val inflater:LayoutInflater, view: BreedListView): RecyclerView.Adapter<BreedItemHolder>(),
-                                                                                LifecycleObserver {
+class BreedListAdapter(private val inflater: LayoutInflater, view: BreedListView) : RecyclerView.Adapter<BreedItemHolder>(), LifecycleObserver {
     private val mObservable = view.getBreadListObservable()
-    private lateinit var mCallBack:OnPropertyChangedCallback
+    private lateinit var mCallBack: OnPropertyChangedCallback
 
     init {
-        view.getLifeCycle().addObserver( this )
+        view.getLifeCycle().addObserver(this)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): BreedItemHolder {
-        var binding = ViewPetItemBinding.inflate(inflater, parent, false )
+        var binding = ViewPetItemBinding.inflate(inflater, parent, false)
         binding.breedListObservable = mObservable
         return BreedItemHolder(binding)
     }
@@ -35,16 +34,15 @@ class BreedListAdapter(private val inflater:LayoutInflater, view: BreedListView)
     override fun getItemCount(): Int = mObservable.breedList.size
 
     override fun onBindViewHolder(holder: BreedItemHolder?, position: Int) {
-        holder?.setBreed( mObservable.breedList[position] )
+        holder?.setBreed(mObservable.breedList[position])
     }
 
-
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume(){
+    fun onResume() {
 
-        mCallBack = object: OnPropertyChangedCallback() {
+        mCallBack = object : OnPropertyChangedCallback() {
             override fun onPropertyChanged(observable: Observable?, br: Int) {
-                if( br == BR.breedList ){
+                if(br == BR.breedList) {
                     notifyDataSetChanged()
                 }
             }
@@ -54,7 +52,7 @@ class BreedListAdapter(private val inflater:LayoutInflater, view: BreedListView)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun onPause(){
+    fun onPause() {
         mObservable.removeOnPropertyChangedCallback(mCallBack)
     }
 }

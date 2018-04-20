@@ -17,18 +17,13 @@ import org.androidannotations.annotations.*
 @DataBound
 @OptionsMenu(R.menu.menu)
 @EActivity(R.layout.activity_petlist)
-class BreedListActivity : BaseActivity(), BreedListView {
+class BreedListActivity : BaseActivity(), BreedListContract.View {
 
-    @BindingObject
-    lateinit var binding: ActivityPetlistBinding
+    @BindingObject lateinit var binding: ActivityPetlistBinding
+    @Bean lateinit var presenter: BreedListPresenter
 
-    @Bean
-    lateinit var presenter: BreedListPresenter
-
-    @ViewById(R.id.petlist_recyclerview)
-    lateinit var recyclerView: RecyclerView
-    @ViewById(R.id.petlist_refreshlayout)
-    lateinit var refreshLayout: SwipeRefreshLayout
+    @ViewById(R.id.petlist_recyclerview) lateinit var recyclerView: RecyclerView
+    @ViewById(R.id.petlist_refreshlayout) lateinit var refreshLayout: SwipeRefreshLayout
 
     @AfterInject
     fun afterInject() {

@@ -1,11 +1,12 @@
 package info.juanmendez.breedgallery.ui.breedlist
 
 import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.OnLifecycleEvent
 import info.juanmendez.breedgallery.api.BreedCall
 import info.juanmendez.breedgallery.api.BreedClientHttp
 import info.juanmendez.breedgallery.api.models.Breed
+import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.Presenter
+import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.View
 import org.androidannotations.annotations.Bean
 import org.androidannotations.annotations.EBean
 import timber.log.Timber
@@ -14,14 +15,14 @@ import timber.log.Timber
  * Created by Juan Mendez on 2/13/18.
  */
 @EBean
-class BreedListPresenter : LifecycleObserver {
+class BreedListPresenter : Presenter {
 
-    private lateinit var listView: BreedListView
+    private lateinit var listView: View
 
     @Bean
     lateinit var http: BreedClientHttp
 
-    fun register(view: BreedListView): BreedListPresenter {
+    override fun register(view: View): Presenter {
         listView = view
         listView.getLifeCycle().addObserver(this)
 
@@ -44,7 +45,7 @@ class BreedListPresenter : LifecycleObserver {
     fun onPause() {
     }
 
-    fun refreshPetList() {
+    override fun refreshPetList() {
 
         //gotcha, app broke due to a late call from its view while being destroyed
         if(!listView.getLifeCycle().currentState.equals(Lifecycle.State.RESUMED)) return

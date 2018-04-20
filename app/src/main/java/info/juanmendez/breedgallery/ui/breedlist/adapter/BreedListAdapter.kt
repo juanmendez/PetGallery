@@ -10,14 +10,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.android.databinding.library.baseAdapters.BR
 import info.juanmendez.breedgallery.databinding.ViewPetItemBinding
-import info.juanmendez.breedgallery.ui.breedlist.BreedListView
+import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.View
 
 /**
  * Created by Juan Mendez on 2/14/18.
  * Through dataBinding the recyclerView can have a binding reference and refresh its content
  * upon changes triggered at breadListObservable.breedList
  */
-class BreedListAdapter(private val inflater: LayoutInflater, view: BreedListView) : RecyclerView.Adapter<BreedItemHolder>(), LifecycleObserver {
+class BreedListAdapter(private val inflater: LayoutInflater, view: View) : RecyclerView.Adapter<BreedItemHolder>(), LifecycleObserver {
     private val mObservable = view.getBreadListObservable()
     private lateinit var mCallBack: OnPropertyChangedCallback
 

@@ -5,10 +5,6 @@ import android.databinding.Bindable
 import info.juanmendez.breedgallery.BR
 import info.juanmendez.breedgallery.data.api.models.Breed
 
-/**
- * Created by Juan Mendez on 2/14/18.
- * Observable used between breedListView and breedListPresenter
- */
 class BreedListObservable : BaseObservable() {
 
     private var _petList = listOf<Breed>()

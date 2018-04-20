@@ -11,9 +11,6 @@ import org.androidannotations.annotations.Bean
 import org.androidannotations.annotations.EBean
 import timber.log.Timber
 
-/**
- * Created by Juan Mendez on 2/13/18.
- */
 class BreedListPresenter( val listView:View, val http:BreedClientHttp) : Presenter {
 
     init {

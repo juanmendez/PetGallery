@@ -3,7 +3,6 @@ package info.juanmendez.breedgallery.data
 import dagger.Component
 import info.juanmendez.breedgallery.AppModule
 import info.juanmendez.breedgallery.data.api.BreedClientHttp
-import info.juanmendez.breedgallery.ui.breedlist.BreedListActivity
 import javax.inject.Singleton
 
 @Singleton

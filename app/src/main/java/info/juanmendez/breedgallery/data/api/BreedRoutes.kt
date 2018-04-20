@@ -1,8 +1,5 @@
 package info.juanmendez.breedgallery.data.api
 
-/**
- * Created by Juan Mendez on 2/13/18.
- */
 class BreedRoutes {
     companion object {
         const val URL = "https://dog.ceo"

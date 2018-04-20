@@ -23,7 +23,7 @@
         android:paddingTop="@dimen/breeding_item_padding_half">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/pet_name_text"
             style="@android:style/TextAppearance.DeviceDefault.Medium"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -34,48 +34,48 @@
 
 
         <ImageView
-            android:id="@+id/imageView"
+            android:id="@+id/pet_image0"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
-            app:layout_constraintEnd_toStartOf="@+id/imageView2"
+            app:layout_constraintBottom_toTopOf="@+id/pet_more_text"
+            app:layout_constraintEnd_toStartOf="@+id/pet_image_1"
             app:layout_constraintHorizontal_chainStyle="spread"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintTop_toBottomOf="@+id/pet_name_text" />
 
         <ImageView
-            android:id="@+id/imageView2"
+            android:id="@+id/pet_image_1"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
-            app:layout_constraintEnd_toStartOf="@+id/imageView3"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintBottom_toTopOf="@+id/pet_more_text"
+            app:layout_constraintEnd_toStartOf="@+id/pet_image_2"
+            app:layout_constraintStart_toEndOf="@+id/pet_image0"
+            app:layout_constraintTop_toBottomOf="@+id/pet_name_text"
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
-            android:id="@+id/imageView3"
+            android:id="@+id/pet_image_2"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginBottom="8dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView2"
+            app:layout_constraintBottom_toTopOf="@+id/pet_more_text"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:layout_constraintStart_toEndOf="@+id/pet_image_1"
+            app:layout_constraintTop_toBottomOf="@+id/pet_name_text"
             app:layout_constraintVertical_bias="0.0" />
 
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/pet_more_text"
             style="@android:style/TextAppearance.DeviceDefault.Small"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -85,6 +85,6 @@
             android:textColor="@android:color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/imageView" />
+            app:layout_constraintStart_toStartOf="@+id/pet_image0" />
     </android.support.constraint.ConstraintLayout>
 </layout>

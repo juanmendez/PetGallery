@@ -11,9 +11,6 @@ import info.juanmendez.breedgallery.ui.breedlist.BreedListContract
 import info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable
 import javax.inject.Inject
 
-/**
- * Created by Juan Mendez on 2/14/18.
- */
 class BreedItemHolder( var view: BreedListContract.View, var binding: ViewPetItemBinding) : RecyclerView.ViewHolder(binding.root) {
     @Inject
     lateinit var breedClientHttp: BreedClientHttp

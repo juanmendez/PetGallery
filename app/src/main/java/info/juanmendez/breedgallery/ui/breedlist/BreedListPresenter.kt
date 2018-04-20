@@ -2,9 +2,9 @@ package info.juanmendez.breedgallery.ui.breedlist
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.OnLifecycleEvent
-import info.juanmendez.breedgallery.api.BreedCall
-import info.juanmendez.breedgallery.api.BreedClientHttp
-import info.juanmendez.breedgallery.api.models.Breed
+import info.juanmendez.breedgallery.data.api.BreedCall
+import info.juanmendez.breedgallery.data.api.BreedClientHttp
+import info.juanmendez.breedgallery.data.api.models.Breed
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.Presenter
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.View
 import org.androidannotations.annotations.Bean

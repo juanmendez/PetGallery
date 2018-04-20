@@ -2,9 +2,9 @@ package info.juanmendez.breedgallery.ui.breedlist.adapter
 
 import android.support.v7.widget.RecyclerView
 import com.android.databinding.library.baseAdapters.BR
-import info.juanmendez.breedgallery.api.BreedCall
-import info.juanmendez.breedgallery.api.BreedClientHttp_
-import info.juanmendez.breedgallery.api.models.Breed
+import info.juanmendez.breedgallery.data.api.BreedCall
+import info.juanmendez.breedgallery.data.api.BreedClientHttp_
+import info.juanmendez.breedgallery.data.api.models.Breed
 import info.juanmendez.breedgallery.databinding.ViewPetItemBinding
 import info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable
 

@@ -1,7 +1,7 @@
-package info.juanmendez.breedgallery.api
+package info.juanmendez.breedgallery.data.api
 
-import info.juanmendez.breedgallery.api.models.Breed
-import info.juanmendez.breedgallery.api.models.BreedListResponse
+import info.juanmendez.breedgallery.data.api.models.Breed
+import info.juanmendez.breedgallery.data.api.models.BreedListResponse
 import org.androidannotations.annotations.AfterInject
 import org.androidannotations.annotations.EBean
 import retrofit2.Call

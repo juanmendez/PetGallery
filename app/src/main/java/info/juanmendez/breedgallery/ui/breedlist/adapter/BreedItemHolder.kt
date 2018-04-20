@@ -1,17 +1,16 @@
 package info.juanmendez.breedgallery.ui.breedlist.adapter
 
 import android.support.v7.widget.RecyclerView
-import com.android.databinding.library.baseAdapters.BR
+import info.juanmendez.breedgallery.BR
 import info.juanmendez.breedgallery.data.api.BreedCall
 import info.juanmendez.breedgallery.data.api.BreedClientHttp
 import info.juanmendez.breedgallery.data.api.models.Breed
-import info.juanmendez.breedgallery.databinding.ViewPetItemBinding
-import info.juanmendez.breedgallery.ui.breedlist.BreedListActivity
+import info.juanmendez.breedgallery.databinding.ItemPetBinding
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract
 import info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable
 import javax.inject.Inject
 
-class BreedItemHolder( var view: BreedListContract.View, var binding: ViewPetItemBinding) : RecyclerView.ViewHolder(binding.root) {
+class BreedItemHolder( var view: BreedListContract.View, var binding: ItemPetBinding) : RecyclerView.ViewHolder(binding.root) {
     @Inject
     lateinit var breedClientHttp: BreedClientHttp
 
@@ -21,7 +20,6 @@ class BreedItemHolder( var view: BreedListContract.View, var binding: ViewPetIte
     }
 
     fun setBreed(breed: Breed) {
-
         binding.breedObservable?.breed = breed
         if(breed.pictureList.isEmpty()) {
             breedClientHttp.getPicsByBreed(breed.name, object : BreedCall<List<String>> {

@@ -6,7 +6,7 @@ import info.juanmendez.breedgallery.ui.breedlist.BreedListActivity
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [AppModule::class])
+@Component(modules = [AppModule::class, RepositoryModule::class])
 interface RepositoryComponent {
     fun inject(o: BreedListActivity)
 }

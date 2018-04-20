@@ -3,7 +3,7 @@ package info.juanmendez.breedgallery.ui.breedlist.adapter
 import android.support.v7.widget.RecyclerView
 import info.juanmendez.breedgallery.BR
 import info.juanmendez.breedgallery.data.api.BreedCall
-import info.juanmendez.breedgallery.data.api.BreedClientHttp
+import info.juanmendez.breedgallery.data.api.BreedDataSourceRemote
 import info.juanmendez.breedgallery.data.api.models.Breed
 import info.juanmendez.breedgallery.databinding.ItemPetBinding
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract
@@ -12,7 +12,7 @@ import javax.inject.Inject
 
 class BreedItemHolder( var view: BreedListContract.View, var binding: ItemPetBinding) : RecyclerView.ViewHolder(binding.root) {
     @Inject
-    lateinit var breedClientHttp: BreedClientHttp
+    lateinit var breedDataSourceRemote: BreedDataSourceRemote
 
     init {
         binding.breedObservable = BreedObservable()
@@ -22,7 +22,7 @@ class BreedItemHolder( var view: BreedListContract.View, var binding: ItemPetBin
     fun setBreed(breed: Breed) {
         binding.breedObservable?.breed = breed
         if(breed.pictureList.isEmpty()) {
-            breedClientHttp.getPicsByBreed(breed.name, object : BreedCall<List<String>> {
+            breedDataSourceRemote.getPicsByBreed(breed.name, object : BreedCall<List<String>> {
                 override fun onResponse(response: List<String>) {
                     breed.pictureList = response
                     binding.breedObservable?.notifyPropertyChanged(BR.breed)

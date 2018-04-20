@@ -5,7 +5,7 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-interface BreedApi {
+interface BreedService {
     @GET(BreedRoutes.ALL_BREEDS)
     fun getBreedList(): Call<BreedListResponse>
 

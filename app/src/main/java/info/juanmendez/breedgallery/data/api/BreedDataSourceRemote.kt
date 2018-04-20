@@ -8,15 +8,15 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class BreedClientHttp {
+class BreedDataSourceRemote {
 
-    private var mRetrofit: Retrofit = Retrofit.Builder().baseUrl(BreedRoutes.URL)
+    private var retrofit: Retrofit = Retrofit.Builder().baseUrl(BreedRoutes.URL)
         .addConverterFactory(GsonConverterFactory.create()).build()
 
-    private var mBreedApi: BreedApi = mRetrofit.create(BreedApi::class.java)
+    private var breedService: BreedService = retrofit.create(BreedService::class.java)
 
     fun getBreeds(breedCall: BreedCall<List<Breed>>) {
-        var call: Call<BreedListResponse> = mBreedApi.getBreedList()
+        var call: Call<BreedListResponse> = breedService.getBreedList()
 
         call.enqueue(object : Callback<BreedListResponse> {
             override fun onFailure(call: Call<BreedListResponse>?, t: Throwable?) {
@@ -31,7 +31,7 @@ class BreedClientHttp {
     }
 
     fun getPicsByBreed(breedName: String, breedCall: BreedCall<List<String>>) {
-        var call: Call<BreedListResponse> = mBreedApi.getPicsByBreed(breedName)
+        var call: Call<BreedListResponse> = breedService.getPicsByBreed(breedName)
 
         call.enqueue(object : Callback<BreedListResponse> {
             override fun onFailure(call: Call<BreedListResponse>?, t: Throwable?) {

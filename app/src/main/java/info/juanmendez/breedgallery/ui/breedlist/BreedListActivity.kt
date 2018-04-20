@@ -13,6 +13,7 @@ import info.juanmendez.breedgallery.ui.breedlist.adapter.BreedListAdapter
 import info.juanmendez.breedgallery.ui.services.BreedListObservable
 import info.juanmendez.breedgallery.ui.services.BreedListVM
 import org.androidannotations.annotations.*
+import javax.inject.Inject
 
 @DataBound
 @OptionsMenu(R.menu.menu)
@@ -20,14 +21,21 @@ import org.androidannotations.annotations.*
 class BreedListActivity : BaseActivity(), BreedListContract.View {
 
     @BindingObject lateinit var binding: ActivityPetlistBinding
-    @Bean lateinit var presenter: BreedListPresenter
 
     @ViewById(R.id.petlist_recyclerview) lateinit var recyclerView: RecyclerView
     @ViewById(R.id.petlist_refreshlayout) lateinit var refreshLayout: SwipeRefreshLayout
 
+    @Inject lateinit var presenter: BreedListPresenter
+    override lateinit var breedListComponent: BreedListComponent
+
     @AfterInject
     fun afterInject() {
-        presenter.register(this)
+        breedListComponent = DaggerBreedListComponent.builder()
+            .breedListPresenterModule( BreedListPresenterModule(this) )
+            .repositoryComponent( (this as BaseActivity).getRepositoryComponent() )
+            .build()
+
+        breedListComponent.inject( this )
     }
 
     @AfterViews

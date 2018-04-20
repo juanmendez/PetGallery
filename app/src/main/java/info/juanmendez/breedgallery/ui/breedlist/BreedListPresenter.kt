@@ -14,19 +14,10 @@ import timber.log.Timber
 /**
  * Created by Juan Mendez on 2/13/18.
  */
-@EBean
-class BreedListPresenter : Presenter {
+class BreedListPresenter( val listView:View, val http:BreedClientHttp) : Presenter {
 
-    private lateinit var listView: View
-
-    @Bean
-    lateinit var http: BreedClientHttp
-
-    override fun register(view: View): Presenter {
-        listView = view
+    init {
         listView.getLifeCycle().addObserver(this)
-
-        return this
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

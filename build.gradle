@@ -38,10 +38,11 @@ ext {
     componentsLibVersion = "1.1.0"
     daggerVersion = "2.15"
     gradleToolsVersion = "3.0.1"
+    okhttpVersion = '3.8.0'
     picassoVersion = "2.5.2"
     rxJavaVersion = "2.1.12"
     rxAndroidVersion = "2.0.1"
     rxLifecycleVersion = "2.2.1"
-    retrofitVersion = "2.2.0"
+    retrofitVersion = "2.3.0"
     timberVersion = "4.5.1"
 }

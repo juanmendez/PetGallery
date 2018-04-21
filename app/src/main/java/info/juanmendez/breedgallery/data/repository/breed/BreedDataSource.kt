@@ -1,9 +1,9 @@
 package info.juanmendez.breedgallery.data.repository.breed
 
-import info.juanmendez.breedgallery.data.api.BreedCall
-import info.juanmendez.breedgallery.data.api.models.Breed
+import info.juanmendez.breedgallery.model.Breed
+import io.reactivex.Flowable
 
 interface BreedDataSource {
-    fun getBreeds(breedCall: BreedCall<List<Breed>>)
-    fun getPicsByBreed(breedName: String, breedCall: BreedCall<List<String>>)
+    fun getBreeds(): Flowable<List<Breed>>
+    fun getPicsByBreed(breedName: String): Flowable<List<String>>
 }

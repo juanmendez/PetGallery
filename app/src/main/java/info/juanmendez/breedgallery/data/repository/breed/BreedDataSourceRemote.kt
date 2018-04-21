@@ -1,52 +1,25 @@
 package info.juanmendez.breedgallery.data.repository.breed
 
-import info.juanmendez.breedgallery.data.api.BreedCall
-import info.juanmendez.breedgallery.data.api.BreedRoutes
 import info.juanmendez.breedgallery.data.api.BreedService
-import info.juanmendez.breedgallery.data.api.models.Breed
-import info.juanmendez.breedgallery.data.api.models.BreedListResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import info.juanmendez.breedgallery.model.Breed
+import io.reactivex.Flowable
 import javax.inject.Inject
 
-class BreedDataSourceRemote @Inject constructor() : BreedDataSource {
+class BreedDataSourceRemote @Inject constructor( val breedService: BreedService ) : BreedDataSource {
 
-    private var retrofit: Retrofit = Retrofit.Builder().baseUrl(BreedRoutes.URL)
-        .addConverterFactory(GsonConverterFactory.create()).build()
+    override fun getBreeds(): Flowable<List<Breed>> {
 
-    private var breedService: BreedService = retrofit.create(
-        BreedService::class.java)
-
-    override fun getBreeds(breedCall: BreedCall<List<Breed>>) {
-        var call: Call<BreedListResponse> = breedService.getBreedList()
-
-        call.enqueue(object : Callback<BreedListResponse> {
-            override fun onFailure(call: Call<BreedListResponse>?, t: Throwable?) {
-                breedCall.onError(Exception(t?.message ?: "${BreedRoutes.ALL_BREEDS}Error"))
-            }
-
-            override fun onResponse(call: Call<BreedListResponse>?, response: Response<BreedListResponse>?) {
-                val breedList = response!!.body().message
-                breedCall.onResponse(breedList.map { Breed(it) })
-            }
-        })
+        return breedService.getBreedList().map { it.message }
+            .flatMap{  Flowable.fromIterable(it) }
+            .filter{ it.isNotEmpty() }
+            .map { Breed(it) }
+            .toList()
+            .toFlowable()
     }
 
-    override fun getPicsByBreed(breedName: String, breedCall: BreedCall<List<String>>) {
-        var call: Call<BreedListResponse> = breedService.getPicsByBreed(breedName)
+    override fun getPicsByBreed(breedName: String): Flowable<List<String>> {
 
-        call.enqueue(object : Callback<BreedListResponse> {
-            override fun onFailure(call: Call<BreedListResponse>?, t: Throwable?) {
-                breedCall.onError(Exception(t?.message ?: "${BreedRoutes.PICS_BY_BREED}.Error"))
-            }
-
-            override fun onResponse(call: Call<BreedListResponse>?, response: Response<BreedListResponse>?) {
-                val breedList = response!!.body().message
-                breedCall.onResponse(breedList)
-            }
-        })
+        return breedService.getPicsByBreed(breedName).map { it.message }
+            .filter{ it.isNotEmpty() }
     }
 }

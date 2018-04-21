@@ -3,7 +3,7 @@ package info.juanmendez.breedgallery.ui.breedlist.viewmodel
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import info.juanmendez.breedgallery.BR
-import info.juanmendez.breedgallery.data.api.models.Breed
+import info.juanmendez.breedgallery.model.Breed
 
 /**
  * This is an observable used for recyclerView holder and its view

@@ -1,4 +1,4 @@
-package info.juanmendez.breedgallery.data.api.models
+package info.juanmendez.breedgallery.model
 
 data class BreedListResponse(
     var status: String,

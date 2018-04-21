@@ -90,9 +90,11 @@ dependencies {
     implementation "com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-kotlin:$rootProject.rxLifecycleVersion"
     implementation 'com.jakewharton.rxbinding:rxbinding:1.0.1'
 
-    // Retrofit
+    // Retrofit and Okhttp
     implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okhttpVersion"
 
     // Local Unit Test
     testImplementation "junit:junit:4.12"

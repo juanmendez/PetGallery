@@ -8,8 +8,4 @@ import info.juanmendez.breedgallery.data.repository.breed.BreedDataSourceRemote
 class BreedListPresenterModule(val view: BreedListContract.View) {
 
     @Provides fun provideView() = view
-
-    @Provides
-    fun provideBreedListPresenter(breedDataSourceRemote: BreedDataSourceRemote, view: BreedListContract.View ) =
-            BreedListPresenter( view, breedDataSourceRemote )
 }

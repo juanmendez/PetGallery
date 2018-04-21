@@ -1,5 +1,8 @@
-package info.juanmendez.breedgallery.data.api
+package info.juanmendez.breedgallery.data.repository.breed
 
+import info.juanmendez.breedgallery.data.api.BreedCall
+import info.juanmendez.breedgallery.data.api.BreedRoutes
+import info.juanmendez.breedgallery.data.api.BreedService
 import info.juanmendez.breedgallery.data.api.models.Breed
 import info.juanmendez.breedgallery.data.api.models.BreedListResponse
 import retrofit2.Call
@@ -7,15 +10,17 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 
-class BreedDataSourceRemote {
+class BreedDataSourceRemote @Inject constructor() : BreedDataSource {
 
     private var retrofit: Retrofit = Retrofit.Builder().baseUrl(BreedRoutes.URL)
         .addConverterFactory(GsonConverterFactory.create()).build()
 
-    private var breedService: BreedService = retrofit.create(BreedService::class.java)
+    private var breedService: BreedService = retrofit.create(
+        BreedService::class.java)
 
-    fun getBreeds(breedCall: BreedCall<List<Breed>>) {
+    override fun getBreeds(breedCall: BreedCall<List<Breed>>) {
         var call: Call<BreedListResponse> = breedService.getBreedList()
 
         call.enqueue(object : Callback<BreedListResponse> {
@@ -30,7 +35,7 @@ class BreedDataSourceRemote {
         })
     }
 
-    fun getPicsByBreed(breedName: String, breedCall: BreedCall<List<String>>) {
+    override fun getPicsByBreed(breedName: String, breedCall: BreedCall<List<String>>) {
         var call: Call<BreedListResponse> = breedService.getPicsByBreed(breedName)
 
         call.enqueue(object : Callback<BreedListResponse> {

@@ -2,7 +2,7 @@ package info.juanmendez.breedgallery.ui.breedlist
 
 import dagger.Module
 import dagger.Provides
-import info.juanmendez.breedgallery.data.api.BreedDataSourceRemote
+import info.juanmendez.breedgallery.data.repository.breed.BreedDataSourceRemote
 
 @Module
 class BreedListPresenterModule(val view: BreedListContract.View) {

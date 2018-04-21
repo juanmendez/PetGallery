@@ -3,7 +3,7 @@ package info.juanmendez.breedgallery.ui.breedlist.adapter
 import android.support.v7.widget.RecyclerView
 import info.juanmendez.breedgallery.BR
 import info.juanmendez.breedgallery.data.api.BreedCall
-import info.juanmendez.breedgallery.data.api.BreedDataSourceRemote
+import info.juanmendez.breedgallery.data.repository.breed.BreedDataSourceRemote
 import info.juanmendez.breedgallery.data.api.models.Breed
 import info.juanmendez.breedgallery.databinding.ItemPetBinding
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract

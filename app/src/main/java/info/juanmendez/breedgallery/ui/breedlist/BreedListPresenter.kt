@@ -3,13 +3,13 @@ package info.juanmendez.breedgallery.ui.breedlist
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.OnLifecycleEvent
 import info.juanmendez.breedgallery.data.api.BreedCall
-import info.juanmendez.breedgallery.data.api.BreedDataSourceRemote
+import info.juanmendez.breedgallery.data.repository.breed.BreedDataSourceRemote
 import info.juanmendez.breedgallery.data.api.models.Breed
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.Presenter
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.View
 import timber.log.Timber
 
-class BreedListPresenter( val listView:View, val http:BreedDataSourceRemote) : Presenter {
+class BreedListPresenter( val listView:View, val http: BreedDataSourceRemote) : Presenter {
 
     init {
         listView.getLifeCycle().addObserver(this)

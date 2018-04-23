@@ -1,5 +1,10 @@
 package info.juanmendez.breedgallery.model
 
-data class Breed(var name: String) {
+import io.realm.RealmModel
+import io.realm.annotations.PrimaryKey
+import io.realm.annotations.RealmClass
+
+@RealmClass
+data class Breed constructor( @PrimaryKey var name: String): RealmModel {
     var pictureList: List<String> = listOf()
 }

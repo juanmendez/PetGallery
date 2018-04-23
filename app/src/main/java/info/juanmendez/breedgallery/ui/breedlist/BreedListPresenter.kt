@@ -2,6 +2,7 @@ package info.juanmendez.breedgallery.ui.breedlist
 
 import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.OnLifecycleEvent
+import com.trello.rxlifecycle2.android.lifecycle.kotlin.bindToLifecycle
 import info.juanmendez.breedgallery.data.repository.breed.BreedRepository
 import info.juanmendez.breedgallery.data.schedulers.RunOn
 import info.juanmendez.breedgallery.data.schedulers.SchedulerType
@@ -10,7 +11,7 @@ import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.View
 import javax.inject.Inject
 
 class BreedListPresenter @Inject constructor(
-    val listView:View,
+    val view:View,
     val breedRepository: BreedRepository,
     @RunOn(SchedulerType.COMPUTATION) val computationScheduler: io.reactivex.Scheduler,
     @RunOn(SchedulerType.UI) val uiScheduler: io.reactivex.Scheduler
@@ -18,7 +19,7 @@ class BreedListPresenter @Inject constructor(
 ) : Presenter {
 
     init {
-        listView.getLifeCycle().addObserver(this)
+        view.getLifeCycle().addObserver(this)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -28,7 +29,7 @@ class BreedListPresenter @Inject constructor(
          * ViewModel has a list of breeds, so initially we detect
          * if we need to go and fetch the content
          */
-        if(listView.getBreadListObservable().breedList.isEmpty()) {
+        if(view.getBreadListObservable().breedList.isEmpty()) {
             refreshPetList()
         }
     }
@@ -40,26 +41,16 @@ class BreedListPresenter @Inject constructor(
     override fun refreshPetList() {
 
         //gotcha, app broke due to a late call from its view while being destroyed
-        if(!listView.getLifeCycle().currentState.equals(Lifecycle.State.RESUMED))
+        if(!view.getLifeCycle().currentState.equals(Lifecycle.State.RESUMED))
             return
 
 
 
         breedRepository.getBreeds().subscribeOn( computationScheduler )
             .observeOn(uiScheduler)
+            .bindToLifecycle( view )
             .subscribe{
-                listView.getBreadListObservable().breedList = it
+                view.getBreadListObservable().breedList = it
             }
-
-        /*breedRepository.getBreeds(object : BreedCall<List<Breed>> {
-            override fun onError(exception: Exception) {
-                //TODO: implement an error display in the View
-                Timber.e(exception.message)
-            }
-
-            override fun onResponse(response: List<Breed>) {
-                listView.getBreadListObservable().breedList = response
-            }
-        })*/
     }
 }

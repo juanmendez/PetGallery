@@ -2,6 +2,7 @@ package info.juanmendez.breedgallery.ui.breedlist.adapter
 
 import android.support.v7.widget.RecyclerView
 import com.android.databinding.library.baseAdapters.BR
+import com.trello.rxlifecycle2.android.lifecycle.kotlin.bindToLifecycle
 import info.juanmendez.breedgallery.data.repository.breed.BreedRepository
 import info.juanmendez.breedgallery.data.schedulers.RunOn
 import info.juanmendez.breedgallery.data.schedulers.SchedulerType
@@ -33,6 +34,7 @@ class BreedItemHolder( var view: BreedListContract.View, var binding: ItemPetBin
             breedRepository.getPicsByBreed(breed.name)
                 .subscribeOn( computationScheduler )
                 .observeOn(uiScheduler)
+                .bindToLifecycle( view )
                 .subscribe({
                     breed.pictureList = it
                     binding.breedObservable?.notifyPropertyChanged(BR.breed)

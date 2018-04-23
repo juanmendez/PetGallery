@@ -98,6 +98,8 @@ dependencies {
 
     // Local Unit Test
     testImplementation "junit:junit:4.12"
+    testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+    testImplementation "org.hamcrest:hamcrest-all:$rootProject.hamcrestVersion"
 
     // Espresso
     androidTestImplementation "com.android.support.test:runner:1.0.1"

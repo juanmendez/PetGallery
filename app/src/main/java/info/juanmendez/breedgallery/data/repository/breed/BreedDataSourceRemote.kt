@@ -22,4 +22,16 @@ class BreedDataSourceRemote @Inject constructor( val breedService: BreedService 
         return breedService.getPicsByBreed(breedName).map { it.message }
             .filter{ it.isNotEmpty() }
     }
+
+    override fun addBreed(breed: Breed) {
+        throw UnsupportedOperationException("Unsupported operation")
+    }
+
+    override fun deleteAllBreeds() {
+        throw UnsupportedOperationException("Unsupported operation")
+    }
+
+    override fun addPicsByBreed(breed: String, pics: List<String>) {
+        throw UnsupportedOperationException("Unsupported operation")
+    }
 }

@@ -1,13 +1,17 @@
 package info.juanmendez.breedgallery.data.repository.breed
 
+import android.content.Context
 import info.juanmendez.breedgallery.data.database.BreedRealm
 import info.juanmendez.breedgallery.model.Breed
 import io.reactivex.Flowable
+import io.realm.Realm
+import io.realm.RealmConfiguration
 import javax.inject.Inject
 
-class BreedDataSourceLocal @Inject constructor( val breedRealm: BreedRealm ) : BreedDataSource {
+class BreedDataSourceLocal @Inject constructor( val breedRealm: BreedRealm, val realmConfiguration: RealmConfiguration ) : BreedDataSource {
 
     val breedList:MutableList<Breed> = mutableListOf()
+    val realm: Realm = Realm.getDefaultInstance()
 
     init {
         println( "just created")

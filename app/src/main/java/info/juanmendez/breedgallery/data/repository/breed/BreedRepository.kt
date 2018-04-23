@@ -5,7 +5,9 @@ import info.juanmendez.breedgallery.model.Breed
 import io.reactivex.Flowable
 import javax.inject.Inject
 
-class BreedRepository @Inject constructor( @Remote val breedDataSourceRemote: BreedDataSourceRemote): BreedDataSource {
+class BreedRepository @Inject constructor(
+    @Remote val breedDataSourceRemote: BreedDataSourceRemote
+): BreedDataSource {
     override fun getBreeds(): Flowable<List<Breed>> {
         return breedDataSourceRemote.getBreeds()
     }

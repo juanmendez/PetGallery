@@ -12,10 +12,12 @@ import info.juanmendez.breedgallery.ui.breedlist.BreedListContract
 import info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable
 import javax.inject.Inject
 
-class BreedItemHolder( var view: BreedListContract.View, var binding: ItemPetBinding) : RecyclerView.ViewHolder(binding.root) {
+class BreedItemHolder(
+    var view: BreedListContract.View,
+    var binding: ItemPetBinding
+) : RecyclerView.ViewHolder(binding.root) {
 
-    @Inject
-    lateinit var breedRepository: BreedRepository
+    @Inject lateinit var breedRepository: BreedRepository
 
     @Inject @field:RunOn(SchedulerType.COMPUTATION) lateinit var computationScheduler: io.reactivex.Scheduler
 

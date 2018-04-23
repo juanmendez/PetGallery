@@ -1,4 +1,4 @@
-package info.juanmendez.breedgallery.data.schedulers
+package info.juanmendez.breedgallery.utils.schedulers
 
 import javax.inject.Qualifier
 

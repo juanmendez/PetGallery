@@ -4,8 +4,8 @@ import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.OnLifecycleEvent
 import com.trello.rxlifecycle2.android.lifecycle.kotlin.bindToLifecycle
 import info.juanmendez.breedgallery.data.repository.breed.BreedRepository
-import info.juanmendez.breedgallery.data.schedulers.RunOn
-import info.juanmendez.breedgallery.data.schedulers.SchedulerType
+import info.juanmendez.breedgallery.utils.schedulers.RunOn
+import info.juanmendez.breedgallery.utils.schedulers.SchedulerType
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.Presenter
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.View
 import javax.inject.Inject

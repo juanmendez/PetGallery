@@ -4,8 +4,8 @@ import android.support.v7.widget.RecyclerView
 import com.android.databinding.library.baseAdapters.BR
 import com.trello.rxlifecycle2.android.lifecycle.kotlin.bindToLifecycle
 import info.juanmendez.breedgallery.data.repository.breed.BreedRepository
-import info.juanmendez.breedgallery.data.schedulers.RunOn
-import info.juanmendez.breedgallery.data.schedulers.SchedulerType
+import info.juanmendez.breedgallery.utils.schedulers.RunOn
+import info.juanmendez.breedgallery.utils.schedulers.SchedulerType
 import info.juanmendez.breedgallery.databinding.ItemPetBinding
 import info.juanmendez.breedgallery.model.Breed
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract

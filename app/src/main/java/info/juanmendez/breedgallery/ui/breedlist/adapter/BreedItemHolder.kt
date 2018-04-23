@@ -1,17 +1,24 @@
 package info.juanmendez.breedgallery.ui.breedlist.adapter
 
 import android.support.v7.widget.RecyclerView
-import info.juanmendez.breedgallery.model.Breed
-import info.juanmendez.breedgallery.data.repository.breed.BreedDataSourceRemote
+import com.android.databinding.library.baseAdapters.BR
 import info.juanmendez.breedgallery.data.repository.breed.BreedRepository
+import info.juanmendez.breedgallery.data.schedulers.RunOn
+import info.juanmendez.breedgallery.data.schedulers.SchedulerType
 import info.juanmendez.breedgallery.databinding.ItemPetBinding
+import info.juanmendez.breedgallery.model.Breed
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract
 import info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable
 import javax.inject.Inject
 
 class BreedItemHolder( var view: BreedListContract.View, var binding: ItemPetBinding) : RecyclerView.ViewHolder(binding.root) {
+
     @Inject
-    lateinit var breedDataSourceRemote: BreedRepository
+    lateinit var breedRepository: BreedRepository
+
+    @Inject @field:RunOn(SchedulerType.COMPUTATION) lateinit var computationScheduler: io.reactivex.Scheduler
+
+    @Inject @field:RunOn(SchedulerType.UI) lateinit var uiScheduler: io.reactivex.Scheduler
 
     init {
         binding.breedObservable = BreedObservable()
@@ -20,17 +27,16 @@ class BreedItemHolder( var view: BreedListContract.View, var binding: ItemPetBin
 
     fun setBreed(breed: Breed) {
         binding.breedObservable?.breed = breed
-        if(breed.pictureList.isEmpty()) {
-            /*breedDataSourceRemote.getPicsByBreed(breed.name, object : BreedCall<List<String>> {
-                override fun onResponse(response: List<String>) {
-                    breed.pictureList = response
-                    binding.breedObservable?.notifyPropertyChanged(BR.breed)
-                }
 
-                override fun onError(exception: Exception) {
-                    TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-                }
-            })*/
+        if(breed.pictureList.isEmpty()) {
+
+            breedRepository.getPicsByBreed(breed.name)
+                .subscribeOn( computationScheduler )
+                .observeOn(uiScheduler)
+                .subscribe({
+                    breed.pictureList = it
+                    binding.breedObservable?.notifyPropertyChanged(BR.breed)
+                })
         }
     }
 }

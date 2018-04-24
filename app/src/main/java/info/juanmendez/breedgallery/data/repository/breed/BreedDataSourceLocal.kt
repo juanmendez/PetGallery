@@ -1,41 +1,95 @@
 package info.juanmendez.breedgallery.data.repository.breed
-
-import android.content.Context
-import info.juanmendez.breedgallery.data.database.BreedRealm
 import info.juanmendez.breedgallery.model.Breed
 import io.reactivex.Flowable
 import io.realm.Realm
-import io.realm.RealmConfiguration
 import javax.inject.Inject
 
-class BreedDataSourceLocal @Inject constructor( val breedRealm: BreedRealm, val realmConfiguration: RealmConfiguration ) : BreedDataSource {
-
-    val breedList:MutableList<Breed> = mutableListOf()
-    val realm: Realm = Realm.getDefaultInstance()
-
-    init {
-        println( "just created")
-    }
+class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
 
     override fun getBreeds(): Flowable<List<Breed>> {
-        return Flowable.just(breedList)
+
+        lateinit var realm:Realm
+        lateinit var breedsAsFlowable: Flowable<List<Breed>>
+
+        try {
+            realm = Realm.getDefaultInstance()
+            realm.executeTransaction{
+                breedsAsFlowable = it.where( Breed::class.java )
+                    .findAll().asFlowable()
+                    .flatMap{  Flowable.fromIterable(it) }
+                    .doOnNext{ realm.copyFromRealm(it) }
+                    .toList()
+                    .toFlowable()
+            }
+        } finally {
+            realm.close()
+        }
+
+        return breedsAsFlowable
     }
 
     override fun getPicsByBreed(breedName: String): Flowable<List<String>> {
-        val list: List<String> = breedList.filter { it.name == breedName }.first().pictureList
 
-        return Flowable.just( list )
+        lateinit var realm:Realm
+        lateinit var picturesAsFlowable: Flowable<List<String>>
+
+        try {
+            realm = Realm.getDefaultInstance()
+            realm.executeTransaction{
+                it.where( Breed::class.java ).equalTo("name", breedName )
+                    .findFirst()?.let {
+                        picturesAsFlowable = it.asFlowable<Breed>().map { it.pictureList }
+                    }
+            }
+        } finally {
+            realm.close()
+        }
+
+        return picturesAsFlowable
     }
 
     override fun addBreed(breed: Breed) {
-        breedList.add( breed )
+         lateinit var realm:Realm
+
+        try {
+            realm = Realm.getDefaultInstance()
+            realm.executeTransaction{
+                it.insertOrUpdate(breed)
+            }
+        } finally {
+            realm.close()
+        }
     }
 
     override fun deleteAllBreeds() {
-        breedList.clear()
+
+        lateinit var realm:Realm
+
+        try {
+            realm = Realm.getDefaultInstance()
+            realm.executeTransaction{
+                it.delete( Breed::class.java )
+            }
+        } finally {
+            realm.close()
+        }
     }
 
     override fun addPicsByBreed(breedName: String, pics: List<String>) {
-        breedList.filter { it.name == breedName }.first().pictureList = pics
+
+        lateinit var realm:Realm
+
+        try {
+            realm = Realm.getDefaultInstance()
+            realm.executeTransaction{
+                it.where(Breed::class.java)
+                    .equalTo( "name", breedName )
+                    .findFirst()?.let{
+                        it.pictureList = pics
+                    }
+            }
+        } finally {
+            realm.close()
+        }
     }
 }

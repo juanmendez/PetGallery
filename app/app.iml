@@ -23,7 +23,9 @@
     </facet>
     <facet type="kotlin-language" name="Kotlin">
       <configuration version="3" platform="JVM 1.6" useProjectSettings="false">
-        <compilerSettings />
+        <compilerSettings>
+          <option name="additionalArguments" value="-Xjsr305=strict" />
+        </compilerSettings>
         <compilerArguments>
           <option name="destination" value="$MODULE_DIR$/build/tmp/kotlin-classes/debug" />
           <option name="noStdlib" value="true" />
@@ -35,7 +37,6 @@
           <option name="apiVersion" value="1.2" />
           <option name="pluginOptions">
             <array>
-              <option value="plugin:org.jetbrains.kotlin.allopen:annotation=org.androidannotations.api.KotlinOpen" />
               <option value="plugin:org.jetbrains.kotlin.android:experimental=false" />
               <option value="plugin:org.jetbrains.kotlin.android:enabled=true" />
               <option value="plugin:org.jetbrains.kotlin.android:defaultCacheImplementation=hashMap" />
@@ -45,7 +46,6 @@
             <array>
               <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-android-extensions/1.2.40/5f124db1c11af4500eee2313ab4092f1c3f3f304/kotlin-android-extensions-1.2.40.jar" />
               <option value="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.jetbrains.kotlin/kotlin-annotation-processing-gradle/1.2.40/e5c56f911827d8bad91d1dda7e1adf00960a2e5d/kotlin-annotation-processing-gradle-1.2.40.jar" />
-              <option value="$KOTLIN_BUNDLED$/lib/allopen-compiler-plugin.jar" />
             </array>
           </option>
         </compilerArguments>
@@ -134,7 +134,6 @@
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/instant-run-resources" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/javaPrecompile" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/jniLibs" />
-      <excludeFolder url="file://$MODULE_DIR$/build/intermediates/lint" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifest-checker" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/manifests" />
       <excludeFolder url="file://$MODULE_DIR$/build/intermediates/prebuild" />
@@ -174,22 +173,21 @@
     <orderEntry type="library" name="Gradle: com.android.support:recyclerview-v7-26.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.android.support.test:rules-1.0.1" level="project" />
     <orderEntry type="library" name="Gradle: javax.inject:javax.inject:1@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.databinding:adapters-3.1.2" level="project" />
     <orderEntry type="library" name="Gradle: com.trello.rxlifecycle2:rxlifecycle-android-lifecycle-2.2.1" level="project" />
     <orderEntry type="library" name="Gradle: com.trello.rxlifecycle2:rxlifecycle-components-2.2.1" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.retrofit2:retrofit:2.3.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support.constraint:constraint-layout-1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:livedata-1.1.0" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.core:runtime-1.1.0" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.databinding:library-3.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-vector-drawable-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-ui-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.trello.rxlifecycle2:rxlifecycle-android-2.2.1" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.databinding:adapters-3.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-core-utils-26.1.0" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.bytebuddy:byte-buddy-agent:1.6.11@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.code.findbugs:jsr305:3.0.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.okhttp3:okhttp:3.8.0@jar" level="project" />
-    <orderEntry type="library" name="Gradle: com.android.databinding:baseLibrary:3.1.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.databinding:library-3.1.2" level="project" />
     <orderEntry type="library" name="Gradle: com.google.dagger:dagger-android-2.15" level="project" />
     <orderEntry type="library" name="Gradle: com.getkeepsafe.relinker:relinker-1.2.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: net.sf.kxml:kxml2:2.3.0@jar" level="project" />
@@ -207,6 +205,7 @@
     <orderEntry type="library" name="Gradle: com.android.support:appcompat-v7-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-fragment-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: org.androidannotations:androidannotations-api:4.4.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.android.databinding:baseLibrary:3.1.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.android.support:support-compat-26.1.0" level="project" />
     <orderEntry type="library" name="Gradle: org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.2.40@jar" level="project" />
     <orderEntry type="library" name="Gradle: android.arch.lifecycle:extensions-1.1.0" level="project" />

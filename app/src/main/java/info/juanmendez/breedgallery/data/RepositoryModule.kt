@@ -24,21 +24,4 @@ class RepositoryModule {
     @Local
     @Singleton
     fun provideBreedDataSourceLocal( local:BreedDataSourceLocal ): BreedDataSource = local
-
-
-    @Provides
-    @Singleton
-    fun provideRealmConfiguration( context: Context ): RealmConfiguration {
-        Realm.init(context)
-
-        return RealmConfiguration
-            .Builder()
-            .name("info.juanmendez.breedgallery.default")
-            .build().apply {
-                Realm.setDefaultConfiguration( this )
-            }
-    }
-
-    @Provides
-    fun provideRealm( realmConfiguration: RealmConfiguration ):Realm=Realm.getDefaultInstance()
 }

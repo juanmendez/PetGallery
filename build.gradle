@@ -2,7 +2,8 @@
 
 buildscript {
     ext.kotlin_version = '1.2.40'
-    ext.realmVersion = "5.0.0"
+    ext.realmVersion = "5.0.1"
+
     repositories {
         google()
         jcenter()
@@ -14,6 +15,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.2'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-allopen:$kotlin_version"
         classpath "io.realm:realm-gradle-plugin:$realmVersion"
     }
 }
@@ -24,6 +26,10 @@ allprojects {
         jcenter()
         maven {
             url 'http://oss.jfrog.org/artifactory/oss-snapshot-local'
+        }
+
+        maven {
+            url 'https://jitpack.io'
         }
     }
 }

@@ -1,8 +1,9 @@
 apply plugin: "com.android.application"
-apply plugin: "realm-android"
 apply plugin: "kotlin-android"
 apply plugin: "kotlin-android-extensions"
 apply plugin: "kotlin-kapt"
+apply plugin: "kotlin-allopen"
+apply plugin: "realm-android"
 
 // version info
 def versionMajor = 1
@@ -38,18 +39,16 @@ android {
     }
 }
 
+allOpen {
+    annotation("org.androidannotations.api.KotlinOpen")
+}
+
 kapt {
     correctErrorTypes = true
+    generateStubs = true
     arguments {
         arg("resourcePackageName", "org.androidannotations.gradle")  //AndroidAnnotations fix
         arg("resourcePackageName", android.defaultConfig.applicationId) //ApplicationId fix
-    }
-}
-
-// enable @ParametersAreNonnullByDefault annotation. See https://blog.jetbrains.com/kotlin/2017/09/kotlin-1-1-50-is-out/
-tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).all {
-    kotlinOptions {
-        freeCompilerArgs = ["-Xjsr305=strict"]
     }
 }
 

@@ -18,7 +18,7 @@ import javax.inject.Inject
 @DataBound
 @OptionsMenu(R.menu.menu)
 @EActivity(R.layout.activity_petlist)
-open class BreedListActivity : BaseActivity(), BreedListContract.View {
+class BreedListActivity : BaseActivity(), BreedListContract.View {
 
     @BindingObject lateinit var binding: ActivityPetlistBinding
 

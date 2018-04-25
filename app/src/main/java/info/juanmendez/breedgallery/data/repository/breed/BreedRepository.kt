@@ -4,6 +4,7 @@ import com.loumalnatis.android.data.repository.Local
 import com.loumalnatis.android.data.repository.Remote
 import info.juanmendez.breedgallery.model.Breed
 import io.reactivex.Flowable
+import io.realm.RealmList
 import javax.inject.Inject
 
 class BreedRepository @Inject constructor(
@@ -17,7 +18,7 @@ class BreedRepository @Inject constructor(
             .switchIfEmpty( doRefresh() )
     }
 
-    override fun getPicsByBreed(breedName: String): Flowable<List<String>> {
+    override fun getPicsByBreed(breedName: String): Flowable<RealmList<String>> {
         return breedDataSourceRemote.getPicsByBreed(breedName)
     }
 
@@ -29,7 +30,7 @@ class BreedRepository @Inject constructor(
         breedDataSourceLocal.deleteAllBreeds()
     }
 
-    override fun addPicsByBreed(breedName: String, pics: List<String>) {
+    override fun addPicsByBreed(breedName: String, pics: RealmList<String>) {
         breedDataSourceLocal.addPicsByBreed( breedName, pics )
     }
 

@@ -5,6 +5,7 @@ import com.loumalnatis.android.data.repository.Remote
 import info.juanmendez.breedgallery.model.Breed
 import io.reactivex.Flowable
 import io.realm.RealmList
+import timber.log.Timber
 import javax.inject.Inject
 
 class BreedRepository @Inject constructor(
@@ -40,6 +41,7 @@ class BreedRepository @Inject constructor(
             .doOnNext{ breedDataSourceLocal.deleteAllBreeds() }
             .flatMap { Flowable.fromIterable( it ) }
             .doOnNext{
+                Timber.i( "add breed" )
                 breedDataSourceLocal.addBreed( it )
             }
             .toList()

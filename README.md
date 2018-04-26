@@ -6,7 +6,7 @@ It is also making use of the [`Repository Pattern`](https://medium.com/@krzychuk
 ## Features
 * [Kotlin language](https://kotlinlang.org/)
 * [Android Databinding](https://developer.android.com/topic/libraries/data-binding/index.html)
-* [Android Annotations](http://androidannotations.org/) used as a simple dependency injector
+* [Android Annotations](http://androidannotations.org/)
 * [Lifecycle-aware components](https://developer.android.com/topic/libraries/architecture/lifecycle.html), helps `Presenter` to be aware of `Views`'s lifecycle
 * [Dagger](https://google.github.io/dagger/)
 * [Retrofit](https://square.github.io/retrofit/)

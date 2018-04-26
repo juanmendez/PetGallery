@@ -10,15 +10,13 @@ import javax.inject.Singleton
 
 @Module
 class AppModule(private val context: Application) {
-    init{
+    init {
         Realm.init(context)
 
-        val configuration = RealmConfiguration
-            .Builder()
-            .name("info.juanmendez.breedgallery.default")
-            .build()
+        val configuration =
+            RealmConfiguration.Builder().name("info.juanmendez.breedgallery.default").build()
 
-        Realm.setDefaultConfiguration( configuration )
+        Realm.setDefaultConfiguration(configuration)
     }
 
     @Provides

@@ -11,7 +11,7 @@ class BreedListObservable : BaseObservable() {
 
     var breedList: List<Breed>
         @Bindable get() = _petList
-        set(value){
+        set(value) {
             _petList = value
             notifyPropertyChanged(BR.breedList)
         }

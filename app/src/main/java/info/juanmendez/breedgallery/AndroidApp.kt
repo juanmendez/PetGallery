@@ -3,17 +3,13 @@ package info.juanmendez.breedgallery
 import android.app.Application
 import info.juanmendez.breedgallery.data.DaggerRepositoryComponent
 import info.juanmendez.breedgallery.data.RepositoryComponent
-import org.androidannotations.annotations.EApplication
 import timber.log.BuildConfig
 import timber.log.Timber
 
-
 class AndroidApp : Application() {
 
-    val repositoryComponent: RepositoryComponent by lazy{
-        DaggerRepositoryComponent.builder()
-            .appModule(AppModule(this))
-            .build()
+    val repositoryComponent: RepositoryComponent by lazy {
+        DaggerRepositoryComponent.builder().appModule(AppModule(this)).build()
     }
 
     override fun onCreate() {

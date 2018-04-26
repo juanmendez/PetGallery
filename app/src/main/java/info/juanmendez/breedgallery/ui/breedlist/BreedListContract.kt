@@ -8,14 +8,13 @@ import info.juanmendez.breedgallery.ui.services.BreedListObservable
 
 interface BreedListContract {
 
-    interface View:LifecycleOwner {
+    interface View : LifecycleOwner {
         val breedListComponent: BreedListComponent
         fun getLifeCycle(): Lifecycle
         fun getBreadListObservable(): BreedListObservable
-        fun startActivity(intent: Intent)
     }
 
-    interface Presenter: LifecycleObserver {
+    interface Presenter : LifecycleObserver {
         fun refreshPetList()
     }
 }

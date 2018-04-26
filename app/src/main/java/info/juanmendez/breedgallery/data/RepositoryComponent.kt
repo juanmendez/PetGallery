@@ -7,10 +7,8 @@ import info.juanmendez.breedgallery.data.repository.breed.BreedRepository
 import javax.inject.Singleton
 
 @Singleton
-@Component(modules = [
-    ApiModule::class,
-    AppModule::class,
-    RepositoryModule::class]
+@Component(
+    modules = [ApiModule::class, AppModule::class, RepositoryModule::class]
 )
 interface RepositoryComponent {
     fun provideBreedRepository(): BreedRepository

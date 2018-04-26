@@ -12,7 +12,8 @@ import info.juanmendez.breedgallery.BR
 import info.juanmendez.breedgallery.databinding.ItemPetBinding
 import info.juanmendez.breedgallery.ui.breedlist.BreedListContract.View
 
-class BreedListAdapter(private val inflater: LayoutInflater, private val view: View) : RecyclerView.Adapter<BreedItemHolder>(), LifecycleObserver {
+class BreedListAdapter(private val inflater: LayoutInflater, private val view: View) :
+    RecyclerView.Adapter<BreedItemHolder>(), LifecycleObserver {
     private val listObservable = view.getBreadListObservable()
     private lateinit var callback: OnPropertyChangedCallback
 

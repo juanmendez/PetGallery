@@ -28,13 +28,11 @@ class ApiModule {
 
     @Provides
     @Singleton
-    internal fun provideHttpClient(headerInterceptor: HeaderInterceptor,
-                                   httpInterceptor: HttpLoggingInterceptor
+    internal fun provideHttpClient(
+        headerInterceptor: HeaderInterceptor, httpInterceptor: HttpLoggingInterceptor
     ): OkHttpClient {
-        return OkHttpClient.Builder()
-            .addInterceptor(headerInterceptor)
-            .addInterceptor(httpInterceptor)
-            .build()
+        return OkHttpClient.Builder().addInterceptor(headerInterceptor)
+            .addInterceptor(httpInterceptor).build()
     }
 
     @Provides
@@ -51,13 +49,13 @@ class ApiModule {
 
     @Provides
     @Singleton
-    internal fun provideRetrofit(okHttpClient: OkHttpClient, converterFactory: Converter.Factory,
-                                 callAdapterFactory: CallAdapter.Factory): Retrofit {
-        return Retrofit.Builder().baseUrl(BreedRoutes.URL)
-            .addConverterFactory(converterFactory)
-            .addCallAdapterFactory(callAdapterFactory)
-            .client(okHttpClient)
-            .build()
+    internal fun provideRetrofit(
+        okHttpClient: OkHttpClient,
+        converterFactory: Converter.Factory,
+        callAdapterFactory: CallAdapter.Factory
+    ): Retrofit {
+        return Retrofit.Builder().baseUrl(BreedRoutes.URL).addConverterFactory(converterFactory)
+            .addCallAdapterFactory(callAdapterFactory).client(okHttpClient).build()
     }
 
     /* Specific services */

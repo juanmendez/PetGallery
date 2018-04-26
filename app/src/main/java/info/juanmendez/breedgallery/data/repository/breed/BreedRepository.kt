@@ -8,40 +8,37 @@ import io.realm.RealmList
 import javax.inject.Inject
 
 class BreedRepository @Inject constructor(
-    @Remote private val breedDataSourceRemote: BreedDataSource,
-    @Local private val breedDataSourceLocal: BreedDataSource
-): BreedDataSource {
+    @Remote private val breedDataSourceRemote: BreedDataSource, @Local private val breedDataSourceLocal: BreedDataSource
+) : BreedDataSource {
 
-    override fun getBreeds(forceRemote:Boolean): Flowable<List<Breed>> {
+    override fun getBreeds(forceRemote: Boolean): Flowable<List<Breed>> {
 
-        return if( forceRemote ) {
+        return if(forceRemote) {
             doRefreshBreeds()
         } else {
-            breedDataSourceLocal.getBreeds(forceRemote)
-                .flatMap {
-                    if( it.isEmpty() ){
-                        doRefreshBreeds()
-                    }else{
-                        Flowable.just( it )
-                    }
+            breedDataSourceLocal.getBreeds(forceRemote).flatMap {
+                if(it.isEmpty()) {
+                    doRefreshBreeds()
+                } else {
+                    Flowable.just(it)
                 }
+            }
         }
     }
 
     override fun getPicsByBreed(breedName: String): Flowable<RealmList<String>> {
 
-
-        return breedDataSourceLocal.getPicsByBreed( breedName ).flatMap {
-            if( it.isEmpty() ){
-                doRefreshPics( breedName )
-            }else{
-                Flowable.just( it )
+        return breedDataSourceLocal.getPicsByBreed(breedName).flatMap {
+            if(it.isEmpty()) {
+                doRefreshPics(breedName)
+            } else {
+                Flowable.just(it)
             }
         }
     }
 
     override fun addBreed(breed: Breed) {
-        breedDataSourceLocal.addBreed( breed )
+        breedDataSourceLocal.addBreed(breed)
     }
 
     override fun deleteAllBreeds() {
@@ -49,25 +46,21 @@ class BreedRepository @Inject constructor(
     }
 
     override fun addPicsByBreed(breedName: String, pics: RealmList<String>) {
-        breedDataSourceLocal.addPicsByBreed( breedName, pics )
+        breedDataSourceLocal.addPicsByBreed(breedName, pics)
     }
 
-    private fun doRefreshBreeds():Flowable<List<Breed>> {
+    private fun doRefreshBreeds(): Flowable<List<Breed>> {
 
         return breedDataSourceRemote.getBreeds(true)
-            .doOnNext{ breedDataSourceLocal.deleteAllBreeds() }
-            .flatMap { Flowable.fromIterable( it ) }
-            .doOnNext{
-                breedDataSourceLocal.addBreed( it )
-            }
-            .toList()
-            .toFlowable()
+            .doOnNext { breedDataSourceLocal.deleteAllBreeds() }
+            .flatMap { Flowable.fromIterable(it) }.doOnNext {
+                breedDataSourceLocal.addBreed(it)
+            }.toList().toFlowable()
     }
 
     private fun doRefreshPics(breedName: String): Flowable<RealmList<String>> {
-        return breedDataSourceRemote.getPicsByBreed(breedName)
-            .doOnNext {
-                breedDataSourceLocal.addPicsByBreed( breedName, it )
-            }
+        return breedDataSourceRemote.getPicsByBreed(breedName).doOnNext {
+            breedDataSourceLocal.addPicsByBreed(breedName, it)
+        }
     }
 }

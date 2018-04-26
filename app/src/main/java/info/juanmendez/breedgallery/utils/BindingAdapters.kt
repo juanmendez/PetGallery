@@ -23,7 +23,8 @@ fun picassoImageGroup(viewGroup: ViewGroup, urlList: List<String>) {
         var length = Math.min(viewGroup.childCount, urlList.size)
         val picasso = Picasso.with(viewGroup.context)
 
-        (0 until length).filter { viewGroup.getChildAt(it) is ImageView }.mapTo(imageList) { viewGroup.getChildAt(it) as ImageView }
+        (0 until length).filter { viewGroup.getChildAt(it) is ImageView }
+            .mapTo(imageList) { viewGroup.getChildAt(it) as ImageView }
 
         imageList.forEachIndexed({ index, image ->
             run {

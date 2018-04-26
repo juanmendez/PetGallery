@@ -1,7 +1,6 @@
 package info.juanmendez.breedgallery.ui.breedlist
 
 import android.arch.lifecycle.Lifecycle
-import android.arch.lifecycle.ViewModelProviders
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -11,7 +10,6 @@ import info.juanmendez.breedgallery.databinding.ActivityPetlistBinding
 import info.juanmendez.breedgallery.ui.base.BaseActivity
 import info.juanmendez.breedgallery.ui.breedlist.adapter.BreedListAdapter
 import info.juanmendez.breedgallery.ui.services.BreedListObservable
-import info.juanmendez.breedgallery.ui.services.BreedListVM
 import org.androidannotations.annotations.*
 import javax.inject.Inject
 
@@ -20,12 +18,16 @@ import javax.inject.Inject
 @EActivity(R.layout.activity_petlist)
 class BreedListActivity : BaseActivity(), BreedListContract.View {
 
-    @BindingObject lateinit var binding: ActivityPetlistBinding
+    @BindingObject
+    lateinit var binding: ActivityPetlistBinding
 
-    @ViewById(R.id.petlist_recyclerview) lateinit var recyclerView: RecyclerView
-    @ViewById(R.id.petlist_refreshlayout) lateinit var refreshLayout: SwipeRefreshLayout
+    @ViewById(R.id.petlist_recyclerview)
+    lateinit var recyclerView: RecyclerView
+    @ViewById(R.id.petlist_refreshlayout)
+    lateinit var refreshLayout: SwipeRefreshLayout
 
-    @Inject lateinit var presenter: BreedListPresenter
+    @Inject
+    lateinit var presenter: BreedListPresenter
     override lateinit var breedListComponent: BreedListComponent
 
     private val observable = BreedListObservable()
@@ -33,11 +35,10 @@ class BreedListActivity : BaseActivity(), BreedListContract.View {
     @AfterInject
     fun afterInject() {
         breedListComponent = DaggerBreedListComponent.builder()
-            .breedListPresenterModule( BreedListPresenterModule(this) )
-            .repositoryComponent( (this as BaseActivity).getRepositoryComponent() )
-            .build()
+            .breedListPresenterModule(BreedListPresenterModule(this))
+            .repositoryComponent((this as BaseActivity).getRepositoryComponent()).build()
 
-        breedListComponent.inject( this )
+        breedListComponent.inject(this)
     }
 
     @AfterViews

@@ -29,7 +29,6 @@ class BreedListAdapter(private val inflater: LayoutInflater, private val view: V
     @Inject lateinit var breedRepository: BreedRepository
     @Inject @field:RunOn(SchedulerType.COMPUTATION) lateinit var computationScheduler: io.reactivex.Scheduler
     @Inject @field:RunOn(SchedulerType.UI) lateinit var uiScheduler: io.reactivex.Scheduler
-    @Inject lateinit var networkService: NetworkService
 
     init {
         view.getLifeCycle().addObserver(this)
@@ -69,12 +68,10 @@ class BreedListAdapter(private val inflater: LayoutInflater, private val view: V
 
     fun getPicsByBreed( breedName:String, consumer: (RealmList<String>)->Unit  ){
 
-        if( networkService.isOnline() ){
-            breedRepository.getPicsByBreed(breedName)
-                .subscribeOn( computationScheduler )
-                .observeOn(uiScheduler)
-                .bindToLifecycle( view )
-                .subscribe(consumer)
-        }
+        breedRepository.getPicsByBreed(breedName)
+            .subscribeOn( computationScheduler )
+            .observeOn(uiScheduler)
+            .bindToLifecycle( view )
+            .subscribe(consumer)
     }
 }

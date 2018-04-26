@@ -10,7 +10,8 @@ import javax.inject.Inject
 
 class BreedRepository @Inject constructor(
     @Remote private val breedDataSourceRemote: BreedDataSource,
-    @Local private val breedDataSourceLocal: BreedDataSource
+    @Local private val breedDataSourceLocal: BreedDataSource,
+    private val networkService: NetworkService
 ) : BreedDataSource {
 
     override fun getBreeds(forceRemote: Boolean): Flowable<List<Breed>> {
@@ -30,12 +31,16 @@ class BreedRepository @Inject constructor(
 
     override fun getPicsByBreed(breedName: String): Flowable<RealmList<String>> {
 
-        return breedDataSourceLocal.getPicsByBreed(breedName).flatMap {
-            if(it.isEmpty()) {
-                doRefreshPics(breedName)
-            } else {
-                Flowable.just(it)
+        return if( networkService.isOnline() ){
+            breedDataSourceLocal.getPicsByBreed(breedName).flatMap {
+                if(it.isEmpty()) {
+                    doRefreshPics(breedName)
+                } else {
+                    Flowable.just(it)
+                }
             }
+        }else{
+            breedDataSourceLocal.getPicsByBreed(breedName)
         }
     }
 
@@ -53,14 +58,15 @@ class BreedRepository @Inject constructor(
 
     private fun doRefreshBreeds(): Flowable<List<Breed>> {
 
-
-
-
-        return breedDataSourceRemote.getBreeds(true)
-            .doOnNext { breedDataSourceLocal.deleteAllBreeds() }
-            .flatMap { Flowable.fromIterable(it) }.doOnNext {
-                breedDataSourceLocal.addBreed(it)
-            }.toList().toFlowable()
+        return if( networkService.isOnline() ){
+            breedDataSourceRemote.getBreeds(true)
+                .doOnNext { breedDataSourceLocal.deleteAllBreeds() }
+                .flatMap { Flowable.fromIterable(it) }.doOnNext {
+                    breedDataSourceLocal.addBreed(it)
+                }.toList().toFlowable()
+        }else{
+            breedDataSourceLocal.getBreeds(false)
+        }
     }
 
     private fun doRefreshPics(breedName: String): Flowable<RealmList<String>> {

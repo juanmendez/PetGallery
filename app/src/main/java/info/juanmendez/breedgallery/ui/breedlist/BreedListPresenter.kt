@@ -14,7 +14,6 @@ import javax.inject.Inject
 class BreedListPresenter @Inject constructor(
     val view: View,
     val breedRepository: BreedRepository,
-    val networkService: NetworkService,
     @RunOn(SchedulerType.COMPUTATION) val computationScheduler: io.reactivex.Scheduler,
     @RunOn( SchedulerType.UI) val uiScheduler: io.reactivex.Scheduler
 
@@ -44,8 +43,7 @@ class BreedListPresenter @Inject constructor(
     override fun refreshPetList() {
 
         //gotcha, app broke due to a late call from its view while being destroyed
-        if( !view.getLifeCycle().currentState.equals(Lifecycle.State.RESUMED) ||
-            !networkService.isOnline() )
+        if( !view.getLifeCycle().currentState.equals(Lifecycle.State.RESUMED) )
             return
 
         breedRepository.getBreeds(true).subscribeOn(computationScheduler).observeOn(uiScheduler)

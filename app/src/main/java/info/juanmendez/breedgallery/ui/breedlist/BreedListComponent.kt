@@ -10,7 +10,7 @@ import info.juanmendez.breedgallery.utils.schedulers.SchedulerModule
 
 @ActivityScope
 @Component(
-    modules = [BreedListPresenterModule::class, SchedulerModule::class,  ServicesModule::class],
+    modules = [BreedListPresenterModule::class, SchedulerModule::class],
     dependencies = [RepositoryComponent::class]
 )
 interface BreedListComponent {

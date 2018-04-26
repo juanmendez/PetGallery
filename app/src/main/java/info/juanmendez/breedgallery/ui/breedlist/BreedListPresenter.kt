@@ -29,9 +29,12 @@ class BreedListPresenter @Inject constructor(
          * ViewModel has a list of breeds, so initially we detect
          * if we need to go and fetch the content
          */
-        if(view.getBreadListObservable().breedList.isEmpty()) {
-            refreshPetList()
-        }
+        breedRepository.getBreeds(false)
+            .subscribeOn( computationScheduler )
+            .observeOn(uiScheduler)
+            .subscribe{
+                view.getBreadListObservable().breedList = it
+            }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
@@ -46,7 +49,7 @@ class BreedListPresenter @Inject constructor(
 
 
 
-        breedRepository.getBreeds().subscribeOn( computationScheduler )
+        breedRepository.getBreeds(true).subscribeOn( computationScheduler )
             .observeOn(uiScheduler)
             .bindToLifecycle( view )
             .subscribe{

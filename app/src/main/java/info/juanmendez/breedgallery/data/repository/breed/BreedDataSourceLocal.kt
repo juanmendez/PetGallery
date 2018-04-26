@@ -8,11 +8,10 @@ import io.realm.kotlin.where
 import javax.inject.Inject
 
 class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
-
-    val breedList:MutableList<Breed> = mutableListOf()
+    
     val realm: Realm = Realm.getDefaultInstance()
 
-    override fun getBreeds(): Flowable<List<Breed>> {
+    override fun getBreeds(forceRemote:Boolean): Flowable<List<Breed>> {
 
         val realm = Realm.getDefaultInstance()
         val list = mutableListOf<Breed>()
@@ -25,7 +24,7 @@ class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
                     .forEach { list.add(realm.copyFromRealm(it)) }
             }
         } finally {
-            if( !realm.isClosed() )
+            if( !realm.isClosed )
                 realm.close()
         }
 
@@ -59,7 +58,7 @@ class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
                 it.insertOrUpdate(breed)
             }
         } finally {
-            if( !realm.isClosed() )
+            if( !realm.isClosed )
                 realm.close()
         }
     }
@@ -91,11 +90,8 @@ class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
                     }
             }
         } finally {
-            if( !realm.isClosed() )
+            if( !realm.isClosed )
                 realm.close()
         }
-
-
-        breedList.filter { it.name == breedName }.first().pictureList = pics
     }
 }

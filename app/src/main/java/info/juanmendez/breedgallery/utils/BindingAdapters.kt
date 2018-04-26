@@ -20,7 +20,7 @@ fun picassoImageGroup(viewGroup: ViewGroup, urlList: List<String>) {
         viewGroup.visibility = View.VISIBLE
 
         var imageList = mutableListOf<ImageView>()
-        var length = viewGroup.childCount
+        var length = Math.min(viewGroup.childCount, urlList.size)
         val picasso = Picasso.with(viewGroup.context)
 
         (0 until length).filter { viewGroup.getChildAt(it) is ImageView }.mapTo(imageList) { viewGroup.getChildAt(it) as ImageView }

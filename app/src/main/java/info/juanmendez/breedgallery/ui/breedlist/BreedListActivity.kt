@@ -28,6 +28,8 @@ class BreedListActivity : BaseActivity(), BreedListContract.View {
     @Inject lateinit var presenter: BreedListPresenter
     override lateinit var breedListComponent: BreedListComponent
 
+    private val observable = BreedListObservable()
+
     @AfterInject
     fun afterInject() {
         breedListComponent = DaggerBreedListComponent.builder()
@@ -68,6 +70,6 @@ class BreedListActivity : BaseActivity(), BreedListContract.View {
 
     override fun getBreadListObservable(): BreedListObservable {
         //this is useful as binding between presenter and view
-        return ViewModelProviders.of(this).get(BreedListVM::class.java).breedListObservable
+        return observable
     }
 }

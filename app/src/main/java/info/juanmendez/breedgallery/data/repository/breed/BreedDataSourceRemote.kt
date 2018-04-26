@@ -8,7 +8,7 @@ import javax.inject.Inject
 
 class BreedDataSourceRemote @Inject constructor( val breedService: BreedService ) : BreedDataSource {
 
-    override fun getBreeds(): Flowable<List<Breed>> {
+    override fun getBreeds( forceRemote:Boolean ): Flowable<List<Breed>> {
 
         return breedService.getBreedList().map { it.message }
             .flatMap{  Flowable.fromIterable(it) }

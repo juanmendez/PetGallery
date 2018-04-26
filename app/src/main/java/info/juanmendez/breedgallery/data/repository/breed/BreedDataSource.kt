@@ -6,7 +6,7 @@ import io.realm.RealmList
 
 interface BreedDataSource {
     fun addBreed( breed: Breed )
-    fun getBreeds(): Flowable<List<Breed>>
+    fun getBreeds(forceRemote:Boolean): Flowable<List<Breed>>
     fun deleteAllBreeds()
 
     fun addPicsByBreed( breed:String, pics:RealmList<String> )

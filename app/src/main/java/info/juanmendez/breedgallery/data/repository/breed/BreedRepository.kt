@@ -5,7 +5,6 @@ import com.loumalnatis.android.data.repository.Remote
 import info.juanmendez.breedgallery.model.Breed
 import io.reactivex.Flowable
 import io.realm.RealmList
-import timber.log.Timber
 import javax.inject.Inject
 
 class BreedRepository @Inject constructor(
@@ -13,14 +12,32 @@ class BreedRepository @Inject constructor(
     @Local private val breedDataSourceLocal: BreedDataSource
 ): BreedDataSource {
 
-    override fun getBreeds(): Flowable<List<Breed>> {
-        return breedDataSourceLocal.getBreeds()
-            .filter { it.isNotEmpty() }
-            .switchIfEmpty( doRefresh() )
+    override fun getBreeds(forceRemote:Boolean): Flowable<List<Breed>> {
+
+        return if( forceRemote ) {
+            doRefreshBreeds()
+        } else {
+            breedDataSourceLocal.getBreeds(forceRemote)
+                .flatMap {
+                    if( it.isEmpty() ){
+                        doRefreshBreeds()
+                    }else{
+                        Flowable.just( it )
+                    }
+                }
+        }
     }
 
     override fun getPicsByBreed(breedName: String): Flowable<RealmList<String>> {
-        return breedDataSourceRemote.getPicsByBreed(breedName)
+
+
+        return breedDataSourceLocal.getPicsByBreed( breedName ).flatMap {
+            if( it.isEmpty() ){
+                doRefreshPics( breedName )
+            }else{
+                Flowable.just( it )
+            }
+        }
     }
 
     override fun addBreed(breed: Breed) {
@@ -35,16 +52,22 @@ class BreedRepository @Inject constructor(
         breedDataSourceLocal.addPicsByBreed( breedName, pics )
     }
 
-    private fun doRefresh():Flowable<List<Breed>>{
+    private fun doRefreshBreeds():Flowable<List<Breed>> {
 
-        return breedDataSourceRemote.getBreeds()
+        return breedDataSourceRemote.getBreeds(true)
             .doOnNext{ breedDataSourceLocal.deleteAllBreeds() }
             .flatMap { Flowable.fromIterable( it ) }
             .doOnNext{
-                Timber.i( "add breed" )
                 breedDataSourceLocal.addBreed( it )
             }
             .toList()
             .toFlowable()
+    }
+
+    private fun doRefreshPics(breedName: String): Flowable<RealmList<String>> {
+        return breedDataSourceRemote.getPicsByBreed(breedName)
+            .doOnNext {
+                breedDataSourceLocal.addPicsByBreed( breedName, it )
+            }
     }
 }

@@ -14,11 +14,9 @@ class RepositoryModule {
 
     @Provides
     @Remote
-    @Singleton
     fun provideBreedDataSourceRemote(remote: BreedDataSourceRemote): BreedDataSource = remote
 
     @Provides
     @Local
-    @Singleton
     fun provideBreedDataSourceLocal(local: BreedDataSourceLocal): BreedDataSource = local
 }

@@ -3,12 +3,14 @@ package info.juanmendez.breedgallery.data.repository.breed
 import com.loumalnatis.android.data.repository.Local
 import com.loumalnatis.android.data.repository.Remote
 import info.juanmendez.breedgallery.model.Breed
+import info.juanmendez.breedgallery.services.NetworkService
 import io.reactivex.Flowable
 import io.realm.RealmList
 import javax.inject.Inject
 
 class BreedRepository @Inject constructor(
-    @Remote private val breedDataSourceRemote: BreedDataSource, @Local private val breedDataSourceLocal: BreedDataSource
+    @Remote private val breedDataSourceRemote: BreedDataSource,
+    @Local private val breedDataSourceLocal: BreedDataSource
 ) : BreedDataSource {
 
     override fun getBreeds(forceRemote: Boolean): Flowable<List<Breed>> {
@@ -50,6 +52,9 @@ class BreedRepository @Inject constructor(
     }
 
     private fun doRefreshBreeds(): Flowable<List<Breed>> {
+
+
+
 
         return breedDataSourceRemote.getBreeds(true)
             .doOnNext { breedDataSourceLocal.deleteAllBreeds() }

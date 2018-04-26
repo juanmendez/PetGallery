@@ -78,11 +78,15 @@ class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
 
         try {
             realm.executeTransaction {
+                val thisRealm = it
+
                 it.where<Breed>().equalTo("name", breedName).findFirst()?.let {
                         it.pictureList.apply {
                             clear()
                             addAll(pics)
                         }
+
+                        thisRealm.insertOrUpdate( it )
                     }
             }
         } finally {

@@ -9,8 +9,6 @@ import javax.inject.Inject
 
 class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
 
-    val realm: Realm = Realm.getDefaultInstance()
-
     override fun getBreeds(forceRemote: Boolean): Flowable<List<Breed>> {
 
         val realm = Realm.getDefaultInstance()

@@ -21,13 +21,13 @@ import org.androidannotations.annotations.*
 class BreedListActivity : AppCompatActivity(), BreedListView {
 
     @BindingObject
-    lateinit var mBinding:ActivityPetlistBinding
+    lateinit var mBinding: ActivityPetlistBinding
 
     @Bean
     lateinit var mPresenter: BreedListPresenter
 
     @ViewById
-    lateinit var recyclerView:RecyclerView
+    lateinit var recyclerView: RecyclerView
 
     @ViewById
     lateinit var swipeRefreshLayout: SwipeRefreshLayout
@@ -52,7 +52,7 @@ class BreedListActivity : AppCompatActivity(), BreedListView {
     }
 
     @OptionsItem
-    fun menuRefresh(){
+    fun menuRefresh() {
         mPresenter.refreshPetList()
     }
 
@@ -63,11 +63,11 @@ class BreedListActivity : AppCompatActivity(), BreedListView {
         recyclerView.adapter = BreedListAdapter(layoutInflater, this)
     }
 
-    override fun getLifeCycle():Lifecycle=lifecycle
+    override fun getLifeCycle(): Lifecycle = lifecycle
 
 
     override fun getBreadListObservable(): BreedListObservable {
         //this is useful as binding between presenter and view
-        return ViewModelProviders.of( this ).get( BreedListVM::class.java).breedListObservable
+        return ViewModelProviders.of(this).get(BreedListVM::class.java).breedListObservable
     }
 }

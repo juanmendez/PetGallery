@@ -16,7 +16,7 @@ class BreedGalleryApp : Application() {
         handleTimber()
     }
 
-    private fun handleTimber(){
+    private fun handleTimber() {
         if (BuildConfig.DEBUG) {
             Timber.plant(Timber.DebugTree())
         } else {

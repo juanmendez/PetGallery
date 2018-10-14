@@ -6,6 +6,6 @@ package info.juanmendez.breedgallery.api
  * throughout the app
  */
 interface BreedCall<T> {
-    fun onResponse( response:T )
-    fun onError( exception: Exception )
+    fun onResponse(response: T)
+    fun onError(exception: Exception?)
 }

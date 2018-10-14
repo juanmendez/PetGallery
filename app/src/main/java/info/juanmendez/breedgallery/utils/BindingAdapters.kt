@@ -13,26 +13,28 @@ import com.squareup.picasso.Picasso
  * in order to load them based on urlList
  */
 @BindingAdapter("picassoImageGroup")
-fun picassoImageGroup(viewGroup: ViewGroup, urlList:List<String> ){
+fun picassoImageGroup(viewGroup: ViewGroup, urlList: List<String>) {
 
-    if( urlList.isNotEmpty() ){
+    if (urlList.isNotEmpty()) {
 
         viewGroup.visibility = View.VISIBLE
 
         var imageList = mutableListOf<ImageView>()
         var length = viewGroup.childCount
-        val picasso = Picasso.with( viewGroup.context )
+        val picasso = Picasso.with(viewGroup.context)
 
         (0 until length)
                 .filter { viewGroup.getChildAt(it) is ImageView }
                 .mapTo(imageList) { viewGroup.getChildAt(it) as ImageView }
 
-        imageList.forEachIndexed( {index, image ->
+        imageList.forEachIndexed { index, image ->
             run {
-                picasso.load(urlList[index]).fit().centerCrop().into(image)
+                if(index<urlList.size) {
+                    picasso.load(urlList[index]).fit().centerCrop().into(image)
+                }
             }
-        })
-    }else{
+        }
+    } else {
         //turning visibility off removes blinking from previous rows
         viewGroup.visibility = View.INVISIBLE
     }
@@ -40,6 +42,6 @@ fun picassoImageGroup(viewGroup: ViewGroup, urlList:List<String> ){
 
 
 @BindingAdapter("textCapitalize")
-fun textCapitalize( textView:TextView, text:String ){
+fun textCapitalize(textView: TextView, text: String) {
     textView.text = text.capitalize()
 }

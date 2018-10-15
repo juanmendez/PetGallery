@@ -1,4 +1,4 @@
-package info.juanmendez.breedgallery.ui.breedlist.models
+package info.juanmendez.breedgallery.models
 
 /**
  * Created by Juan Mendez on 2/13/18.

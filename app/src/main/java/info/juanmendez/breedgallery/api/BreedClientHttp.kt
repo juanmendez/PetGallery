@@ -1,37 +1,55 @@
 package info.juanmendez.breedgallery.api
 
-import info.juanmendez.breedgallery.ui.breedlist.models.Breed
-import info.juanmendez.breedgallery.ui.breedlist.models.BreedListResponse
-import info.juanmendez.breedgallery.ui.breedlist.models.BreedResponse
+import com.squareup.moshi.Moshi
+import info.juanmendez.breedgallery.models.Breed
+import info.juanmendez.breedgallery.models.BreedListResponse
+import okhttp3.OkHttpClient
+import okhttp3.Request
 import org.androidannotations.annotations.AfterInject
 import org.androidannotations.annotations.EBean
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import timber.log.Timber
+import java.io.IOException
+import okhttp3.Callback as OkCallBack
 
 /**
  * Created by Juan Mendez on 2/13/18.
  */
 @EBean
 class BreedClientHttp {
-    private lateinit var mRetrofit: Retrofit
-    private lateinit var mBreedApi: BreedApi
+    private lateinit var client: OkHttpClient
 
     @AfterInject
     fun afterInject() {
-        mRetrofit = Retrofit
-                .Builder()
-                .baseUrl(BreedRoutes.URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .build()
-
-        mBreedApi = mRetrofit.create(BreedApi::class.java)
+        client = OkHttpClient()
     }
 
     fun getBreeds(breedCall: BreedCall<List<Breed>>) {
-        var call: Call<BreedListResponse> = mBreedApi.getBreedList()
+
+        val request = Request.Builder()
+                .url("${BreedRoutes.URL}${BreedRoutes.ALL_BREEDS}")
+                .build()
+
+        client.newCall(request).enqueue(object : OkCallBack {
+            override fun onFailure(call: okhttp3.Call, e: IOException) {
+
+            }
+
+            override fun onResponse(call: okhttp3.Call, response: okhttp3.Response) {
+                response.body()?.string()?.let {json ->
+                    val moshi = Moshi.Builder().build()
+                    val jsonAdapter = moshi.adapter(BreedListResponse::class.java)
+                    val breedList = jsonAdapter.fromJson(json)
+
+                    breedList?.let {
+                        breedCall.onResponse(it.message.map { Breed(it.key) })
+                    }
+
+                }
+            }
+        })
+
+
+       /* var call: Call<BreedListResponse> = mBreedApi.getBreedList()
 
         call.enqueue(object : Callback<BreedListResponse> {
             override fun onFailure(call: Call<BreedListResponse>?, t: Throwable?) {
@@ -44,11 +62,11 @@ class BreedClientHttp {
                     breedCall.onResponse(breedList.map { Breed(it.key) })
                 }
             }
-        })
+        })*/
     }
 
     fun getPicsByBreed(breedName: String, breedCall: BreedCall<List<String>>) {
-        var call: Call<BreedResponse> = mBreedApi.getPicsByBreed(breedName)
+        /*var call: Call<BreedResponse> = mBreedApi.getPicsByBreed(breedName)
 
         call.enqueue(object : Callback<BreedResponse> {
             override fun onFailure(call: Call<BreedResponse>?, t: Throwable?) {
@@ -60,6 +78,6 @@ class BreedClientHttp {
                     breedCall.onResponse(it.body().message)
                 }
             }
-        })
+        })*/
     }
 }

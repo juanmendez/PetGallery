@@ -3,7 +3,7 @@ package info.juanmendez.breedgallery.ui.services
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import info.juanmendez.breedgallery.BR
-import info.juanmendez.breedgallery.ui.breedlist.models.Breed
+import info.juanmendez.breedgallery.models.Breed
 
 /**
  * Created by Juan Mendez on 2/14/18.

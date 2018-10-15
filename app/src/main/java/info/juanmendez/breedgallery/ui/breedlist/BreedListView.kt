@@ -12,4 +12,5 @@ interface BreedListView {
     fun getLifeCycle(): Lifecycle
     fun getBreadListObservable(): BreedListObservable
     fun startActivity(intent: Intent)
+    fun runOnUiThread(action: Runnable)
 }

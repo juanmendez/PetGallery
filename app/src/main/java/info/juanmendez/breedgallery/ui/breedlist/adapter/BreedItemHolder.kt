@@ -5,7 +5,7 @@ import com.android.databinding.library.baseAdapters.BR
 import info.juanmendez.breedgallery.api.BreedCall
 import info.juanmendez.breedgallery.api.BreedClientHttp_
 import info.juanmendez.breedgallery.databinding.ViewPetItemBinding
-import info.juanmendez.breedgallery.ui.breedlist.models.Breed
+import info.juanmendez.breedgallery.models.Breed
 import info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable
 
 /**

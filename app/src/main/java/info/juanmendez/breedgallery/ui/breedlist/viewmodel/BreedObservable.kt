@@ -12,7 +12,7 @@ import info.juanmendez.breedgallery.models.Breed
  */
 
 class BreedObservable : BaseObservable() {
-    private var _breed = Breed("")
+    private var _breed = Breed("", listOf())
 
     var breed: Breed
         @Bindable get() = _breed

@@ -29,7 +29,7 @@ fun picassoImageGroup(viewGroup: ViewGroup, urlList: List<String>) {
 
         imageList.forEachIndexed { index, image ->
             run {
-                if(index<urlList.size) {
+                if (index < urlList.size) {
                     picasso.load(urlList[index]).fit().centerCrop().into(image)
                 }
             }

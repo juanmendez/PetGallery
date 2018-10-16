@@ -5,7 +5,7 @@ import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.OnLifecycleEvent
 import info.juanmendez.breedgallery.api.BreedCall
 import info.juanmendez.breedgallery.api.BreedClientHttp
-import info.juanmendez.breedgallery.models.Breed
+import info.juanmendez.breedgallery.models.BreedListResponse
 import org.androidannotations.annotations.Bean
 import org.androidannotations.annotations.EBean
 
@@ -50,13 +50,13 @@ class BreedListPresenter : LifecycleObserver {
             return
 
 
-        mHttp.getBreeds(object : BreedCall<List<Breed>> {
+        mHttp.getBreeds(object : BreedCall<BreedListResponse> {
             override fun onError(exception: Exception?) {
 
             }
 
-            override fun onResponse(response: List<Breed>) {
-                mView.getBreadListObservable().breedList = response
+            override fun onResponse(response: BreedListResponse) {
+                mView.getBreadListObservable().breedList = response.list
             }
         })
     }

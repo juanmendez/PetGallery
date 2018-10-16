@@ -56,9 +56,7 @@ class BreedListPresenter : LifecycleObserver {
             }
 
             override fun onResponse(response: List<Breed>) {
-                mView.runOnUiThread(Runnable {
-                    mView.getBreadListObservable().breedList = response
-                })
+                mView.getBreadListObservable().breedList = response
             }
         })
     }

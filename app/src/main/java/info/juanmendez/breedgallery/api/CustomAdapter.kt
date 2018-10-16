@@ -5,9 +5,9 @@ import info.juanmendez.breedgallery.models.Breed
 import info.juanmendez.breedgallery.models.BreedListResponse
 import info.juanmendez.breedgallery.models.RawBreedListResponse
 
-class BreedListAdapter {
+class CustomAdapter {
     @FromJson
-    fun fromJson(raw: RawBreedListResponse): BreedListResponse {
+    fun toBreedListResponse(raw: RawBreedListResponse): BreedListResponse {
         val breeds = mutableListOf<Breed>()
         raw.message.forEach {
             breeds.add(Breed(it.key, it.value))

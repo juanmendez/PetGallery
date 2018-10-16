@@ -2,6 +2,7 @@ package info.juanmendez.breedgallery.api
 
 import android.os.Handler
 import com.squareup.moshi.Moshi
+import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import info.juanmendez.breedgallery.BreedGalleryApp
 import info.juanmendez.breedgallery.models.BreedListResponse
 import info.juanmendez.breedgallery.models.BreedResponse
@@ -30,10 +31,13 @@ class BreedClientHttp {
     fun getBreeds(breedCall: BreedCall<BreedListResponse>) {
 
         val request = Request.Builder()
-                .url("${BreedRoutes.URL}${BreedRoutes.ALL_BREEDS}")
+                .url("https://api.myjson.com/bins/de3kw")
                 .build()
 
-        val moshi = Moshi.Builder().add(BreedListAdapter()).build()
+        val moshi = Moshi.Builder()
+                    .add(CustomAdapter())
+                    .add(KotlinJsonAdapterFactory())
+                    .build()
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: okhttp3.Call, e: IOException) {

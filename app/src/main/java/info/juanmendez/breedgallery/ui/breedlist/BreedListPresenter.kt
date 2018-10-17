@@ -4,7 +4,7 @@ import android.arch.lifecycle.Lifecycle
 import android.arch.lifecycle.LifecycleObserver
 import android.arch.lifecycle.OnLifecycleEvent
 import info.juanmendez.breedgallery.api.BreedCall
-import info.juanmendez.breedgallery.api.BreedClientHttp
+import info.juanmendez.breedgallery.api.MyJsonBreedClientHttp
 import info.juanmendez.breedgallery.models.BreedListResponse
 import org.androidannotations.annotations.Bean
 import org.androidannotations.annotations.EBean
@@ -18,7 +18,7 @@ class BreedListPresenter : LifecycleObserver {
     private lateinit var mView: BreedListView
 
     @Bean
-    lateinit var mHttp: BreedClientHttp
+    lateinit var mMyJsonHttp: MyJsonBreedClientHttp
 
     fun register(view: BreedListView): BreedListPresenter {
         mView = view
@@ -50,7 +50,7 @@ class BreedListPresenter : LifecycleObserver {
             return
 
 
-        mHttp.getBreeds(object : BreedCall<BreedListResponse> {
+        mMyJsonHttp.getBreeds(object : BreedCall<BreedListResponse> {
             override fun onError(exception: Exception?) {
 
             }

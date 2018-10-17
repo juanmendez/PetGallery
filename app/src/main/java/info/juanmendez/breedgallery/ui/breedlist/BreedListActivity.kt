@@ -13,7 +13,14 @@ import info.juanmendez.breedgallery.databinding.ActivityPetlistBinding
 import info.juanmendez.breedgallery.ui.breedlist.adapter.BreedListAdapter
 import info.juanmendez.breedgallery.ui.services.BreedListObservable
 import info.juanmendez.breedgallery.ui.services.BreedListVM
-import org.androidannotations.annotations.*
+import org.androidannotations.annotations.AfterViews
+import org.androidannotations.annotations.Bean
+import org.androidannotations.annotations.BindingObject
+import org.androidannotations.annotations.DataBound
+import org.androidannotations.annotations.EActivity
+import org.androidannotations.annotations.OptionsItem
+import org.androidannotations.annotations.OptionsMenu
+import org.androidannotations.annotations.ViewById
 
 @DataBound
 @OptionsMenu(R.menu.menu)

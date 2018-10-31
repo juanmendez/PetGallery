@@ -36,7 +36,7 @@ class BreedClientHttp {
                 .add(KotlinJsonAdapterFactory())
                 .build()
 
-        // Define the interceptor, add authentication headers
+        // Define the interceptor to append "always" url-param
         val interceptor = Interceptor { chain ->
             var request = chain.request()
             val httpUrl = request.url()
@@ -58,7 +58,7 @@ class BreedClientHttp {
                 .Builder()
                 .baseUrl(BreedRoutes.URL)
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
-                .client(client)
+                .client(client) //client embeds our interceptors
                 .build()
 
         breedApi = retrofit.create(BreedApi::class.java)

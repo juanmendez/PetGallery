@@ -36,8 +36,20 @@ class BreedClientHttp {
                 .add(KotlinJsonAdapterFactory())
                 .build()
 
-        // Define the interceptor to append "always" url-param
-        val interceptor = Interceptor { chain ->
+        //inject headers
+        val headerInterceptor = Interceptor { chain ->
+            var request = chain.request()
+            val headers = request.headers().newBuilder()
+                    .add("user", "juan")
+                    .add("password", "12345").build()
+
+            request = request.newBuilder().headers(headers).build()
+            chain.proceed(request)
+        }
+
+
+        //inject url-param "always" at all times
+        val injectQueryInterceptor = Interceptor { chain ->
             var request = chain.request()
             val httpUrl = request.url()
                     .newBuilder()
@@ -45,13 +57,13 @@ class BreedClientHttp {
                     .build()
 
             request = request.newBuilder().url(httpUrl).build()
-
             chain.proceed(request)
         }
 
         val client = OkHttpClient.Builder().apply {
             addNetworkInterceptor(StethoInterceptor())
-            interceptors().add(interceptor)
+            addInterceptor(headerInterceptor)
+            addInterceptor(injectQueryInterceptor)
         }.build()
 
         retrofit = Retrofit

@@ -1,6 +1,7 @@
 package info.juanmendez.breedgallery
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import org.androidannotations.annotations.EApplication
 import timber.log.BuildConfig
 import timber.log.Timber
@@ -14,6 +15,7 @@ class BreedGalleryApp : Application() {
     override fun onCreate() {
         super.onCreate()
         handleTimber()
+        Stetho.initializeWithDefaults(this)
     }
 
     private fun handleTimber() {

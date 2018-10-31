@@ -1,10 +1,13 @@
 package info.juanmendez.breedgallery.api
 
+import com.facebook.stetho.okhttp3.StethoInterceptor
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import info.juanmendez.breedgallery.BreedGalleryApp
 import info.juanmendez.breedgallery.models.BreedListResponse
 import info.juanmendez.breedgallery.models.BreedResponse
+import okhttp3.Interceptor
+import okhttp3.OkHttpClient
 import org.androidannotations.annotations.AfterInject
 import org.androidannotations.annotations.App
 import org.androidannotations.annotations.EBean
@@ -14,6 +17,7 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 import okhttp3.Callback as OkCallback
+
 
 @EBean
 class BreedClientHttp {
@@ -32,10 +36,29 @@ class BreedClientHttp {
                 .add(KotlinJsonAdapterFactory())
                 .build()
 
+        // Define the interceptor, add authentication headers
+        val interceptor = Interceptor { chain ->
+            var request = chain.request()
+            val httpUrl = request.url()
+                    .newBuilder()
+                    .addQueryParameter("always", "true")
+                    .build()
+
+            request = request.newBuilder().url(httpUrl).build()
+
+            chain.proceed(request)
+        }
+
+        val client = OkHttpClient.Builder().apply {
+            addNetworkInterceptor(StethoInterceptor())
+            interceptors().add(interceptor)
+        }.build()
+
         retrofit = Retrofit
                 .Builder()
                 .baseUrl(BreedRoutes.URL)
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
+                .client(client)
                 .build()
 
         breedApi = retrofit.create(BreedApi::class.java)
@@ -60,7 +83,7 @@ class BreedClientHttp {
 
     fun getPicsByBreed(breedName: String, breedCall: BreedCall<List<String>>) {
 
-        val call: Call<BreedResponse> = breedApi.getPicsByBreed(breedName)
+        val call: Call<BreedResponse> = breedApi.getPicsByBreed(breedName, breedName)
 
         call.enqueue(object : Callback<BreedResponse> {
             override fun onFailure(call: Call<BreedResponse>?, t: Throwable?) {

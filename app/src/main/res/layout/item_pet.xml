@@ -3,13 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="breedObservable"
-            type="info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable"/>
+            type="info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable" />
 
         <variable
             name="breedListObservable"
-            type="info.juanmendez.breedgallery.ui.services.BreedListObservable"/>
+            type="info.juanmendez.breedgallery.ui.services.BreedListObservable" />
     </data>
 
     <!--TODO: make styles to clear code-->

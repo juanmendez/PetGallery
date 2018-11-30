@@ -3,7 +3,6 @@ package info.juanmendez.breedgallery
 import android.app.Application
 import info.juanmendez.breedgallery.data.DaggerRepositoryComponent
 import info.juanmendez.breedgallery.data.RepositoryComponent
-import timber.log.BuildConfig
 import timber.log.Timber
 
 class AndroidApp : Application() {

@@ -20,7 +20,7 @@ class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
                 it.where<Breed>().findAll().forEach { list.add(realm.copyFromRealm(it)) }
             }
         } finally {
-            if(!realm.isClosed) realm.close()
+            if (!realm.isClosed) realm.close()
         }
 
         return Flowable.just(list)
@@ -34,8 +34,8 @@ class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
         try {
             realm.executeTransaction {
                 it.where(Breed::class.java).equalTo("name", breedName).findFirst()?.let {
-                        picturesAsFlowable.addAll(it.pictureList)
-                    }
+                    picturesAsFlowable.addAll(it.pictureList)
+                }
             }
         } finally {
             realm.close()
@@ -53,7 +53,7 @@ class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
                 it.insertOrUpdate(breed)
             }
         } finally {
-            if(!realm.isClosed) realm.close()
+            if (!realm.isClosed) realm.close()
         }
     }
 
@@ -79,16 +79,16 @@ class BreedDataSourceLocal @Inject constructor() : BreedDataSource {
                 val thisRealm = it
 
                 it.where<Breed>().equalTo("name", breedName).findFirst()?.let {
-                        it.pictureList.apply {
-                            clear()
-                            addAll(pics)
-                        }
-
-                        thisRealm.insertOrUpdate( it )
+                    it.pictureList.apply {
+                        clear()
+                        addAll(pics)
                     }
+
+                    thisRealm.insertOrUpdate(it)
+                }
             }
         } finally {
-            if(!realm.isClosed) realm.close()
+            if (!realm.isClosed) realm.close()
         }
     }
 }

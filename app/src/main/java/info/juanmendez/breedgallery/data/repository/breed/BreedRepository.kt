@@ -9,18 +9,18 @@ import io.realm.RealmList
 import javax.inject.Inject
 
 class BreedRepository @Inject constructor(
-    @Remote private val breedDataSourceRemote: BreedDataSource,
-    @Local private val breedDataSourceLocal: BreedDataSource,
-    private val networkService: NetworkService
+        @Remote private val breedDataSourceRemote: BreedDataSource,
+        @Local private val breedDataSourceLocal: BreedDataSource,
+        private val networkService: NetworkService
 ) : BreedDataSource {
 
     override fun getBreeds(forceRemote: Boolean): Flowable<List<Breed>> {
 
-        return if(forceRemote) {
+        return if (forceRemote) {
             doRefreshBreeds()
         } else {
             breedDataSourceLocal.getBreeds(forceRemote).flatMap {
-                if(it.isEmpty()) {
+                if (it.isEmpty()) {
                     doRefreshBreeds()
                 } else {
                     Flowable.just(it)
@@ -31,15 +31,15 @@ class BreedRepository @Inject constructor(
 
     override fun getPicsByBreed(breedName: String): Flowable<RealmList<String>> {
 
-        return if( networkService.isOnline() ){
+        return if (networkService.isOnline()) {
             breedDataSourceLocal.getPicsByBreed(breedName).flatMap {
-                if(it.isEmpty()) {
+                if (it.isEmpty()) {
                     doRefreshPics(breedName)
                 } else {
                     Flowable.just(it)
                 }
             }
-        }else{
+        } else {
             breedDataSourceLocal.getPicsByBreed(breedName)
         }
     }
@@ -58,13 +58,13 @@ class BreedRepository @Inject constructor(
 
     private fun doRefreshBreeds(): Flowable<List<Breed>> {
 
-        return if( networkService.isOnline() ){
+        return if (networkService.isOnline()) {
             breedDataSourceRemote.getBreeds(true)
-                .doOnNext { breedDataSourceLocal.deleteAllBreeds() }
-                .flatMap { Flowable.fromIterable(it) }.doOnNext {
-                    breedDataSourceLocal.addBreed(it)
-                }.toList().toFlowable()
-        }else{
+                    .doOnNext { breedDataSourceLocal.deleteAllBreeds() }
+                    .flatMap { Flowable.fromIterable(it) }.doOnNext {
+                        breedDataSourceLocal.addBreed(it)
+                    }.toList().toFlowable()
+        } else {
             breedDataSourceLocal.getBreeds(false)
         }
     }

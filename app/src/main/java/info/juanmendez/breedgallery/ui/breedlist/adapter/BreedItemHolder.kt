@@ -7,8 +7,8 @@ import info.juanmendez.breedgallery.model.Breed
 import info.juanmendez.breedgallery.ui.breedlist.viewmodel.BreedObservable
 
 class BreedItemHolder(
-    var adapter: BreedListAdapter,
-    var binding: ItemPetBinding
+        var adapter: BreedListAdapter,
+        var binding: ItemPetBinding
 ) : RecyclerView.ViewHolder(binding.root) {
 
 
@@ -19,9 +19,9 @@ class BreedItemHolder(
     fun setBreed(breed: Breed) {
         binding.breedObservable?.breed = breed
 
-        if(breed.pictureList.isEmpty()) {
+        if (breed.pictureList.isEmpty()) {
 
-            adapter.getPicsByBreed( breed.name, {
+            adapter.getPicsByBreed(breed.name, {
                 breed.pictureList = it
                 binding.breedObservable?.notifyPropertyChanged(BR.breed)
             })

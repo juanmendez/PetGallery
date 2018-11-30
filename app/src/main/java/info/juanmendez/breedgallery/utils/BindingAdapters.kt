@@ -15,7 +15,7 @@ import com.squareup.picasso.Picasso
 @BindingAdapter("picassoImageGroup")
 fun picassoImageGroup(viewGroup: ViewGroup, urlList: List<String>) {
 
-    if(urlList.isNotEmpty()) {
+    if (urlList.isNotEmpty()) {
 
         viewGroup.visibility = View.VISIBLE
 
@@ -24,7 +24,7 @@ fun picassoImageGroup(viewGroup: ViewGroup, urlList: List<String>) {
         val picasso = Picasso.with(viewGroup.context)
 
         (0 until length).filter { viewGroup.getChildAt(it) is ImageView }
-            .mapTo(imageList) { viewGroup.getChildAt(it) as ImageView }
+                .mapTo(imageList) { viewGroup.getChildAt(it) as ImageView }
 
         imageList.forEachIndexed({ index, image ->
             run {

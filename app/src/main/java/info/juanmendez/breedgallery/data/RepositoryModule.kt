@@ -7,7 +7,6 @@ import dagger.Provides
 import info.juanmendez.breedgallery.data.repository.breed.BreedDataSource
 import info.juanmendez.breedgallery.data.repository.breed.BreedDataSourceLocal
 import info.juanmendez.breedgallery.data.repository.breed.BreedDataSourceRemote
-import javax.inject.Singleton
 
 @Module
 class RepositoryModule {

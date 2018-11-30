@@ -35,8 +35,8 @@ class BreedListActivity : BaseActivity(), BreedListContract.View {
     @AfterInject
     fun afterInject() {
         breedListComponent = DaggerBreedListComponent.builder()
-            .breedListPresenterModule(BreedListPresenterModule(this))
-            .repositoryComponent((this as BaseActivity).getRepositoryComponent()).build()
+                .breedListPresenterModule(BreedListPresenterModule(this))
+                .repositoryComponent((this as BaseActivity).getRepositoryComponent()).build()
 
         breedListComponent.inject(this)
     }

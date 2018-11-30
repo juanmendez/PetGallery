@@ -14,7 +14,7 @@ class AppModule(private val context: Application) {
         Realm.init(context)
 
         val configuration =
-            RealmConfiguration.Builder().name("info.juanmendez.breedgallery.default").build()
+                RealmConfiguration.Builder().name("info.juanmendez.breedgallery.default").build()
 
         Realm.setDefaultConfiguration(configuration)
     }

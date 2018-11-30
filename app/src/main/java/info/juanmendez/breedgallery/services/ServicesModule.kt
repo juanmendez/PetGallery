@@ -8,5 +8,5 @@ import dagger.Provides
 class ServicesModule {
 
     @Provides
-    fun provideNetworkService( context: Context ):NetworkService = NetworkService( context )
+    fun provideNetworkService(context: Context): NetworkService = NetworkService(context)
 }

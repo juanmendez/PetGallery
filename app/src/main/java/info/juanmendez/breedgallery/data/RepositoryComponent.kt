@@ -9,7 +9,7 @@ import javax.inject.Singleton
 
 @Singleton
 @Component(
-    modules = [ApiModule::class, AppModule::class, RepositoryModule::class, ServicesModule::class]
+        modules = [ApiModule::class, AppModule::class, RepositoryModule::class, ServicesModule::class]
 )
 interface RepositoryComponent {
     fun provideBreedRepository(): BreedRepository
